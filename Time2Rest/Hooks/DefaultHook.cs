@@ -12,16 +12,16 @@ namespace Time2Rest.Hooks
     class DefaultHook
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
+        protected static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern bool UnhookWindowsHookEx(int idHook);
+        protected static extern bool UnhookWindowsHookEx(int idHook);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
+        protected static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
 
 
-        public delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
+        protected delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
 
         const int WH_KEYBOARD_LL = 13;
         const int WH_MOUSE_LL = 14;
@@ -32,11 +32,14 @@ namespace Time2Rest.Hooks
         HookProc MouseHookProcDelegate;
         private readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        public event Action OnOperation;
+
         private int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
         {
             if (nCode >= 0)
             {
-                Logger.Debug("Keyboard: {0} {1}", wParam, lParam);
+                //Logger.Debug("Keyboard: {0} {1}", wParam, lParam);
+                Operation();
             }
 
             return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
@@ -47,10 +50,16 @@ namespace Time2Rest.Hooks
             // wParam = 512: No Mouse button clicked
             if (nCode >= 0)
             {
-                Logger.Debug("Mouse: {0} {1}", wParam, lParam);
+                //Logger.Debug("Mouse: {0} {1}", wParam, lParam);
+                Operation();
             }
 
             return CallNextHookEx(hKeyboardHook, nCode, wParam, lParam);
+        }
+
+        protected virtual void Operation()
+        {
+            OnOperation?.Invoke();
         }
 
         public void StartHook()
@@ -83,7 +92,7 @@ namespace Time2Rest.Hooks
 
         public void StopHook()
         {
-            Logger.Debug("Stoping Hook");
+            Logger.Debug("Stopping Hook");
             if (hKeyboardHook != 0)
             {
                 bool retKeyboard = UnhookWindowsHookEx(hKeyboardHook);
