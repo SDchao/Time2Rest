@@ -36,7 +36,7 @@ namespace Time2Rest
         int alertAgainCount = 0;
 
         // Config
-        int alertInterval = 10;
+        int alertInterval = 1;
         int minimumRestTime = 3;
         int alertAgainInterval = 3;
         double maxOpacity = 0.6;
@@ -59,6 +59,7 @@ namespace Time2Rest
             this.UpdateTimer.Enabled = false;
 
             // TODO: READ CONFIG
+            logger.Debug("Start config reading");
 
             // Init after config reading
             remainingSeconds = alertInterval;
@@ -66,6 +67,7 @@ namespace Time2Rest
 
             // Final step
             this.Visible = false;
+            logger.Info("Init completed");
         }
 
         private void AlertForm_Load(object sender, EventArgs e)
@@ -101,6 +103,7 @@ namespace Time2Rest
                     if (showingTime < minimumRestTime)
                     {
                         // User didnt rest enough
+                        logger.Info("Inisting computer usage, alert later");
                         alertAgainCount += 1;
                         remainingSeconds = alertAgainInterval;
 
@@ -108,6 +111,7 @@ namespace Time2Rest
                     }
                     else
                     {
+                        logger.Info("Rest done, reseting alert");
                         alertAgainCount = 0;
                         remainingSeconds = alertInterval;
                     }
@@ -122,7 +126,7 @@ namespace Time2Rest
         {
             if (status == FADE_IN)
             {
-                this.Opacity += 0.01;
+                this.Opacity += 0.005;
                 if (this.Opacity >= maxOpacity)
                 {
                     showingTime = 0;
@@ -158,6 +162,7 @@ namespace Time2Rest
                 // User leave the computer
                 if (remainingSpareSeconds <= 0)
                 {
+                    logger.Info("User has left, pausing");
                     remainingSeconds = alertInterval;
                     CountdownTimer.Enabled = false;
                 }
@@ -166,6 +171,7 @@ namespace Time2Rest
                 logger.Debug("Time before stop the timer: {0}", remainingSpareSeconds);
                 if (remainingSeconds <= 0)
                 {
+                    logger.Info("Time up! Starting alert");
                     status = FADE_IN;
                     CountdownTimer.Enabled = false;
                     UpdateTimer.Enabled = true;
@@ -178,6 +184,12 @@ namespace Time2Rest
             else if (status == SHOWING)
             {
                 showingTime += 1;
+
+                if (showingTime == minimumRestTime)
+                {
+                    logger.Info("User has rested enough, waiting for operation");
+                    // TODO text modify
+                }
             }
         }
 
