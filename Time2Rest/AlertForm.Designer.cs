@@ -31,22 +31,27 @@ namespace Time2Rest
         {
             this.components = new System.ComponentModel.Container();
             this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.CountdownTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // UpdateTimer
             // 
-            this.UpdateTimer.Enabled = true;
             this.UpdateTimer.Interval = 20;
             this.UpdateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
             // 
-            // TestForm
+            // CountdownTimer
+            // 
+            this.CountdownTimer.Interval = 1000;
+            this.CountdownTimer.Tick += new System.EventHandler(this.CountdownTimer_Tick);
+            // 
+            // AlertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TestForm";
+            this.Name = "AlertForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Form1";
@@ -60,6 +65,7 @@ namespace Time2Rest
         #endregion
 
         private System.Windows.Forms.Timer UpdateTimer;
+        private System.Windows.Forms.Timer CountdownTimer;
     }
 }
 
