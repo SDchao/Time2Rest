@@ -55,7 +55,6 @@ namespace Time2Rest
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Form1";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlertForm_FormClosing);
             this.Load += new System.EventHandler(this.AlertForm_Load);
             this.ResumeLayout(false);

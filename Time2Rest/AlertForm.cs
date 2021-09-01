@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using Time2Rest.Hooks;
 using NLog;
+using System.Runtime.InteropServices;
 
 namespace Time2Rest
 {
@@ -46,6 +47,7 @@ namespace Time2Rest
             DefaultHook.OnOperation += OnUserOperation;
 
             // Init
+            this.TopMost = true;
             this.Opacity = 0.0;
 
             this.Left = 0;
@@ -62,6 +64,8 @@ namespace Time2Rest
             remainingSeconds = alertInterval;
             CountdownTimer.Enabled = true;
 
+            // Final step
+            this.Visible = false;
         }
 
         private void AlertForm_Load(object sender, EventArgs e)
@@ -136,6 +140,7 @@ namespace Time2Rest
                     status = HIDING;
                     UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
+                    this.Visible = false;
                 }
             }
         }
@@ -166,12 +171,30 @@ namespace Time2Rest
                     UpdateTimer.Enabled = true;
 
                     // TODO text modify here
+
+                    this.Visible = true;
                 }
             }
             else if (status == SHOWING)
             {
                 showingTime += 1;
             }
+        }
+
+        // Mouse penetrate
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+        const int GWL_EXSTYLE = -20;
+        const int WS_EX_LAYERED = 0x80000;
+        const int WS_EX_TRANSPARENT = 0x20;
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            var style = GetWindowLong(this.Handle, GWL_EXSTYLE);
+            SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT);
         }
     }
 }
