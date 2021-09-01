@@ -14,7 +14,7 @@ namespace Time2Rest
 {
     public partial class Form1 : Form
     {
-        KeyboardHook keyboardHook = new KeyboardHook();
+        DefaultHook keyboardHook = new DefaultHook();
         public Form1()
         {
             InitializeComponent();
