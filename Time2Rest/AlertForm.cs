@@ -106,7 +106,6 @@ namespace Time2Rest
             CountdownTimer.Enabled = true;
 
             // Final step
-            this.Visible = false;
             logger.Info("Init completed");
         }
 
@@ -190,7 +189,7 @@ namespace Time2Rest
                     status = HIDING;
                     UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
-                    this.Visible = false;
+                    this.Hide();
                 }
             }
         }
@@ -226,7 +225,7 @@ namespace Time2Rest
                     TipLabel.Text = String.Format(lang.GetString("REST_TIP"), Math.Floor(alertInterval / 60.0 + alertAgainInterval * alertAgainCount / 60.0) + 1);
                     UpdateClock();
 
-                    this.Visible = true;
+                    this.Show();
                 }
             }
             else if (status == SHOWING)
@@ -242,7 +241,7 @@ namespace Time2Rest
             }
         }
 
-        // Mouse penetrate
+        // Mouse penetrate and no focus
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
@@ -250,12 +249,13 @@ namespace Time2Rest
         const int GWL_EXSTYLE = -20;
         const int WS_EX_LAYERED = 0x80000;
         const int WS_EX_TRANSPARENT = 0x20;
+        const int WS_EX_NOACTIVATE = 0x08000000;
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             var style = GetWindowLong(this.Handle, GWL_EXSTYLE);
-            SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT);
+            SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE);
         }
 
 
@@ -278,6 +278,11 @@ namespace Time2Rest
             ClockLabel.Text = timeText;
 
             UpdateLayout();
+        }
+
+        private void AlertForm_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

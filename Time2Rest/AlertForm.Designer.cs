@@ -35,6 +35,7 @@ namespace Time2Rest
             this.CountdownTimer = new System.Windows.Forms.Timer(this.components);
             this.ClockLabel = new System.Windows.Forms.Label();
             this.TipLabel = new System.Windows.Forms.Label();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // UpdateTimer
@@ -74,6 +75,12 @@ namespace Time2Rest
             this.TipLabel.Text = "This is a TEST label, plz dont see me";
             this.TipLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Time2Rest";
+            this.notifyIcon.Visible = true;
+            // 
             // AlertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -87,12 +94,16 @@ namespace Time2Rest
             this.Controls.Add(this.ClockLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AlertForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Form1";
+            this.Text = "Time2Rest";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlertForm_FormClosing);
             this.Load += new System.EventHandler(this.AlertForm_Load);
+            this.Shown += new System.EventHandler(this.AlertForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,6 +115,7 @@ namespace Time2Rest
         private System.Windows.Forms.Timer CountdownTimer;
         private System.Windows.Forms.Label ClockLabel;
         private System.Windows.Forms.Label TipLabel;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 
