@@ -11,9 +11,9 @@ namespace Time2Rest.Config
     {
         // Config
         // Function Config
-        public int alertInterval = 1;
-        public int minimumRestTime = 3;
-        public int alertAgainInterval = 3;
+        public int alertInterval = 30 * 60;
+        public int minimumRestTime = 20;
+        public int alertAgainInterval = 1 * 60;
 
         // UI Config
         public double maxOpacity = 0.8;

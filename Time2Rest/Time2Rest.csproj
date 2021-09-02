@@ -69,8 +69,17 @@
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AlertForm.resx">
       <DependentUpon>AlertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Languages\zh-CN.resx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -103,6 +112,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_SETTING.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_ABOUT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_EXIT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_REST.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG_ICON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ICO_ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

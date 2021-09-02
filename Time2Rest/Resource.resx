@@ -117,25 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MENU_ABOUT" xml:space="preserve">
-    <value>关于 Time2Rest</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ICO_ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ICO_ICON.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MENU_EXIT" xml:space="preserve">
-    <value>退出</value>
+  <data name="PNG_ABOUT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PNG_ABOUT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MENU_REST" xml:space="preserve">
-    <value>立刻休息</value>
+  <data name="PNG_EXIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PNG_EXIT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MENU_SETTING" xml:space="preserve">
-    <value>设置</value>
+  <data name="PNG_ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PNG_ICON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="REST_COMPLETE" xml:space="preserve">
-    <value>休息完成</value>
+  <data name="PNG_REST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PNG_REST.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="REST_INCOMPLETE" xml:space="preserve">
-    <value>将在 {0} 分钟后再次提醒</value>
-  </data>
-  <data name="REST_TIP" xml:space="preserve">
-    <value>您已连续使用电脑超过 {0} 分钟</value>
+  <data name="PNG_SETTING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PNG_SETTING.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

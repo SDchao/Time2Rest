@@ -37,7 +37,7 @@ namespace Time2Rest.Config
             try
             {
                 string json = "";
-                using (StreamReader sr = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "config.json"))
+                using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "config.json"))
                 {
                     json = sr.ReadToEnd();
                 }

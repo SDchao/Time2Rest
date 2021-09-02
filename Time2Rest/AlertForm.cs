@@ -31,24 +31,26 @@ namespace Time2Rest
 
         // Display
         int status = HIDING;
+
+        // Time counter
         int remainingSeconds = -1;
-        object countdownLock = new object();
-        int maxSpareSeconds = 5;
-        int remainingSpareSeconds = 5;
+        readonly object countdownLock = new object();
+        readonly int maxSpareSeconds = 5 * 60;
+        int remainingSpareSeconds;
         int showingTime = 0;
-        int alertAgainCount = 0;
+        int userOperatingTime = 0;
 
         // Config
         // Function Config
-        int alertInterval = 1;
-        int minimumRestTime = 3;
-        int alertAgainInterval = 3;
+        int alertInterval;
+        int minimumRestTime;
+        int alertAgainInterval;
 
         // UI Config
-        double maxOpacity = 0.8;
-        Color userBackColor = Color.Black;
-        Color userForeColor = Color.White;
-        String backGroundImgPath = "";
+        double maxOpacity;
+        Color userBackColor;
+        Color userForeColor;
+        String backGroundImgPath;
 
         // Lang
         ResXResourceSet lang;
@@ -60,6 +62,16 @@ namespace Time2Rest
 
             // Lang
             lang = LanguageManager.GetLangRes();
+
+            // Menu Lang
+            NotifyMenu.Items.Add(lang.GetString("MENU_REST"), Resource.PNG_REST);
+            NotifyMenu.Items.Add(lang.GetString("MENU_SETTING"), Resource.PNG_SETTING);
+            NotifyMenu.Items.Add(lang.GetString("MENU_ABOUT"), Resource.PNG_ABOUT);
+            NotifyMenu.Items.Add(lang.GetString("MENU_EXIT"), Resource.PNG_EXIT);
+
+            NotifyMenu.ItemClicked += NotifyMenu_ItemClicked;
+
+            NotifyMenu.AutoClose = true;
 
             // Init
             this.TopMost = true;
@@ -85,7 +97,7 @@ namespace Time2Rest
             // READ CONFIG
             logger.Debug("Start config reading");
             T2rConfig config = T2rConfigManager.ReadConfig();
-            alertAgainCount = config.alertAgainInterval;
+            alertInterval = config.alertInterval;
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
 
@@ -103,12 +115,14 @@ namespace Time2Rest
 
             // Init after config reading
             remainingSeconds = alertInterval;
+            remainingSpareSeconds = maxSpareSeconds;
             CountdownTimer.Enabled = true;
 
             // Final step
             logger.Info("Init completed");
         }
 
+        #region Core Function
         private void AlertForm_Load(object sender, EventArgs e)
         {
             DefaultHook.StartHook();
@@ -121,7 +135,6 @@ namespace Time2Rest
 
         private void OnUserOperation()
         {
-            // TODO
             if (status == HIDING)
             {
                 // User came back or just using the computer
@@ -143,16 +156,15 @@ namespace Time2Rest
                     {
                         // User didnt rest enough
                         logger.Info("Inisting computer usage, alert later");
-                        alertAgainCount += 1;
                         remainingSeconds = alertAgainInterval;
 
                         // text modify
-                        TipLabel.Text = String.Format(lang.GetString("REST_INCOMPLETE"), Math.Floor(alertAgainInterval / 60.0) + 1);
+                        TipLabel.Text = String.Format(lang.GetString("REST_INCOMPLETE"), Math.Round(alertAgainInterval / 60.0));
                     }
                     else
                     {
                         logger.Info("Rest done, reseting alert");
-                        alertAgainCount = 0;
+                        userOperatingTime = 0;
                         remainingSeconds = alertInterval;
                     }
                 }
@@ -202,6 +214,7 @@ namespace Time2Rest
                 {
                     remainingSeconds -= CountdownTimer.Interval / 1000;
                     remainingSpareSeconds -= 1;
+                    userOperatingTime += 1;
                 }
 
                 // User leave the computer
@@ -214,18 +227,11 @@ namespace Time2Rest
 
                 logger.Debug("Time remain: {0}", remainingSeconds);
                 logger.Debug("Time before stop the timer: {0}", remainingSpareSeconds);
+                logger.Debug("User operating time: {0}", userOperatingTime);
                 if (remainingSeconds <= 0)
                 {
-                    logger.Info("Time up! Starting alert");
-                    status = FADE_IN;
-                    CountdownTimer.Enabled = false;
-                    UpdateTimer.Enabled = true;
-
-                    // text modify
-                    TipLabel.Text = String.Format(lang.GetString("REST_TIP"), Math.Floor(alertInterval / 60.0 + alertAgainInterval * alertAgainCount / 60.0) + 1);
-                    UpdateClock();
-
-                    this.Show();
+                    logger.Info("Alert interval time up!");
+                    StartRest();
                 }
             }
             else if (status == SHOWING)
@@ -241,7 +247,24 @@ namespace Time2Rest
             }
         }
 
+        private void StartRest()
+        {
+            CountdownTimer.Enabled = false;
+            logger.Info("Starting alert");
+            status = FADE_IN;
+            UpdateTimer.Enabled = true;
+
+            // text modify
+            TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
+            UpdateClock();
+
+            this.Show();
+        }
+
+        #endregion
+
         // Mouse penetrate and no focus
+        #region Mouse passthrough
         [DllImport("user32.dll", SetLastError = true)]
         static extern int GetWindowLong(IntPtr hWnd, int nIndex);
         [DllImport("user32.dll")]
@@ -284,5 +307,53 @@ namespace Time2Rest
         {
             this.Hide();
         }
+
+        #endregion
+
+        #region Notify Icon
+
+        private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                NotifyMenu.Show(MousePosition);
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                StartRest();
+            }
+        }
+
+        #endregion
+
+        #region Notify Menu Methods
+
+        private void NotifyMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            int i = 0;
+            for (; i < NotifyMenu.Items.Count; i++)
+            {
+                if (NotifyMenu.Items[i] == e.ClickedItem)
+                    break;
+            }
+
+            switch (i)
+            {
+                // TODO
+                case 0:     // Rest now
+                    StartRest();
+                    break;
+                case 1:     // Setting
+                    break;
+                case 2:     // About
+                    break;
+                case 3:     // Exit
+                    Application.Exit();
+                    break;
+            }
+        }
+
+        #endregion
+
     }
 }

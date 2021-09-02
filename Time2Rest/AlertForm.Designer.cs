@@ -35,7 +35,8 @@ namespace Time2Rest
             this.CountdownTimer = new System.Windows.Forms.Timer(this.components);
             this.ClockLabel = new System.Windows.Forms.Label();
             this.TipLabel = new System.Windows.Forms.Label();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.NotifyMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // UpdateTimer
@@ -75,11 +76,17 @@ namespace Time2Rest
             this.TipLabel.Text = "This is a TEST label, plz dont see me";
             this.TipLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // notifyIcon
+            // NotifyIcon
             // 
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "Time2Rest";
-            this.notifyIcon.Visible = true;
+            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
+            this.NotifyIcon.Text = "Time2Rest";
+            this.NotifyIcon.Visible = true;
+            this.NotifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
+            // 
+            // NotifyMenu
+            // 
+            this.NotifyMenu.Name = "NotifyMenu";
+            this.NotifyMenu.Size = new System.Drawing.Size(181, 26);
             // 
             // AlertForm
             // 
@@ -115,7 +122,8 @@ namespace Time2Rest
         private System.Windows.Forms.Timer CountdownTimer;
         private System.Windows.Forms.Label ClockLabel;
         private System.Windows.Forms.Label TipLabel;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.NotifyIcon NotifyIcon;
+        private System.Windows.Forms.ContextMenuStrip NotifyMenu;
     }
 }
 
