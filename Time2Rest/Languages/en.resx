@@ -133,7 +133,7 @@
     <value>Rest now</value>
   </data>
   <data name="MENU_SETTING" xml:space="preserve">
-    <value>Settings</value>
+    <value>Settings...</value>
   </data>
   <data name="REST_COMPLETE" xml:space="preserve">
     <value>Rest Completed</value>

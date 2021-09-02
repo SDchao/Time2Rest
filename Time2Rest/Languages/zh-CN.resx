@@ -133,7 +133,7 @@
     <value>立刻休息</value>
   </data>
   <data name="MENU_SETTING" xml:space="preserve">
-    <value>设置</value>
+    <value>设置...</value>
   </data>
   <data name="REST_COMPLETE" xml:space="preserve">
     <value>休息完成</value>
