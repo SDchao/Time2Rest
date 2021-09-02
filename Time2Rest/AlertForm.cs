@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Time2Rest.Hooks;
+using Time2Rest.Config;
 using NLog;
 using System.Runtime.InteropServices;
 
@@ -36,10 +37,16 @@ namespace Time2Rest
         int alertAgainCount = 0;
 
         // Config
+        // Function Config
         int alertInterval = 1;
         int minimumRestTime = 3;
         int alertAgainInterval = 3;
+
+        // UI Config
         double maxOpacity = 0.6;
+        Color userBackColor = Color.Black;
+        Color userForeColor = Color.White;
+        String backGroundImgPath = "";
 
         public AlertForm()
         {
@@ -58,8 +65,24 @@ namespace Time2Rest
 
             this.UpdateTimer.Enabled = false;
 
-            // TODO: READ CONFIG
+            // Components Adjust
+            float clockHeight = this.Height * 0.25f;
+            ClockLabel.Font = new Font(ClockLabel.Font.Name, clockHeight * 0.75f);
+            ClockLabel.Top = (this.Height - ClockLabel.Height) / 2;
+            ClockLabel.Left = (this.Width - ClockLabel.Width) / 2;
+
+
+            // READ CONFIG
             logger.Debug("Start config reading");
+            T2rConfig config = T2rConfigManager.ReadConfig();
+            alertAgainCount = config.alertAgainInterval;
+            minimumRestTime = config.minimumRestTime;
+            alertAgainInterval = config.alertAgainInterval;
+
+            maxOpacity = config.maxOpacity;
+            userBackColor = config.GetBackColor();
+            userForeColor = config.GetForeColor();
+            backGroundImgPath = config.backGroundImgPath;
 
             // Init after config reading
             remainingSeconds = alertInterval;
@@ -126,7 +149,7 @@ namespace Time2Rest
         {
             if (status == FADE_IN)
             {
-                this.Opacity += 0.005;
+                this.Opacity += 0.002;
                 if (this.Opacity >= maxOpacity)
                 {
                     showingTime = 0;

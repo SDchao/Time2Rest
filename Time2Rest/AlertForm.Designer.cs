@@ -32,6 +32,7 @@ namespace Time2Rest
             this.components = new System.ComponentModel.Container();
             this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.CountdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.ClockLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // UpdateTimer
@@ -44,6 +45,17 @@ namespace Time2Rest
             this.CountdownTimer.Interval = 1000;
             this.CountdownTimer.Tick += new System.EventHandler(this.CountdownTimer_Tick);
             // 
+            // ClockLabel
+            // 
+            this.ClockLabel.AutoSize = true;
+            this.ClockLabel.Font = new System.Drawing.Font("微软雅黑", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ClockLabel.ForeColor = System.Drawing.Color.White;
+            this.ClockLabel.Location = new System.Drawing.Point(248, 146);
+            this.ClockLabel.Name = "ClockLabel";
+            this.ClockLabel.Size = new System.Drawing.Size(299, 124);
+            this.ClockLabel.TabIndex = 0;
+            this.ClockLabel.Text = "00:00";
+            // 
             // AlertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -51,6 +63,7 @@ namespace Time2Rest
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.ClockLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AlertForm";
             this.ShowIcon = false;
@@ -59,6 +72,7 @@ namespace Time2Rest
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlertForm_FormClosing);
             this.Load += new System.EventHandler(this.AlertForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -66,6 +80,7 @@ namespace Time2Rest
 
         private System.Windows.Forms.Timer UpdateTimer;
         private System.Windows.Forms.Timer CountdownTimer;
+        private System.Windows.Forms.Label ClockLabel;
     }
 }
 
