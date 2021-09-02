@@ -14,6 +14,7 @@ namespace Time2Rest.Config
         public int alertInterval = 30 * 60;
         public int minimumRestTime = 20;
         public int alertAgainInterval = 1 * 60;
+        public bool hideWhenFullscreen = true;
 
         // UI Config
         public double maxOpacity = 0.8;

@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="Config\T2rConfigManager.cs" />
     <Compile Include="Config\T2rConfig.cs" />
-    <Compile Include="Hooks\DefaultHook.cs" />
+    <Compile Include="WinInteractors\DefaultHook.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="WinInteractors\FullscreenDetector.cs" />
     <EmbeddedResource Include="AlertForm.resx">
       <DependentUpon>AlertForm.cs</DependentUpon>
     </EmbeddedResource>

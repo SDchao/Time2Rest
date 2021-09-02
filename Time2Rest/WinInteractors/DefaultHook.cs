@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using NLog;
-namespace Time2Rest.Hooks
+namespace Time2Rest.WinInteractors
 {
     class DefaultHook
     {

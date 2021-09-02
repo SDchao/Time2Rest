@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Time2Rest.Hooks;
+using Time2Rest.WinInteractors;
 using Time2Rest.Config;
 using Time2Rest.Languages;
 using NLog;
@@ -19,6 +19,7 @@ namespace Time2Rest
 {
     public partial class AlertForm : Form
     {
+        #region variables
         const int HIDING = -1;
         const int FADE_IN = 1;
         const int SHOWING = 2;
@@ -26,7 +27,7 @@ namespace Time2Rest
 
         private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        // Hook
+        // WinAPI
         DefaultHook DefaultHook = new DefaultHook();
 
         // Display
@@ -45,6 +46,7 @@ namespace Time2Rest
         int alertInterval;
         int minimumRestTime;
         int alertAgainInterval;
+        bool hideWhenFullScreen;
 
         // UI Config
         double maxOpacity;
@@ -54,6 +56,8 @@ namespace Time2Rest
 
         // Lang
         ResXResourceSet lang;
+
+        #endregion
 
         public AlertForm()
         {
@@ -98,6 +102,7 @@ namespace Time2Rest
             alertInterval = config.alertInterval;
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
+            hideWhenFullScreen = config.hideWhenFullscreen;
 
             maxOpacity = config.maxOpacity;
             userBackColor = config.GetBackColor();
@@ -228,8 +233,16 @@ namespace Time2Rest
                 logger.Debug("User operating time: {0}", userOperatingTime);
                 if (remainingSeconds <= 0)
                 {
-                    logger.Info("Alert interval time up!");
-                    StartRest();
+                    if (!FullscreenDetector.IsForegroundFullScreen())
+                    {
+                        logger.Info("Alert interval time up!");
+                        StartRest();
+                    }
+                    else
+                    {
+                        if (remainingSeconds == 0)
+                            logger.Info("Fullscreen Application detected");
+                    }
                 }
             }
             else if (status == SHOWING)
@@ -247,6 +260,9 @@ namespace Time2Rest
 
         private void StartRest()
         {
+            if (status != HIDING)
+                return;
+
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
