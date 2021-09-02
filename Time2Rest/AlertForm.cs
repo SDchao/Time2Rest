@@ -378,7 +378,8 @@ namespace Time2Rest
                         UpdateConfig(settingForm.NewConfig);
                     }
                     break;
-                case 2:     // About
+                case 2:     // About TODO
+
                     break;
                 case 3:     // Exit
                     Application.Exit();

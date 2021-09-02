@@ -29,7 +29,7 @@ namespace Time2Rest
             Label_Percentage.Text = lang.GetString("ST_LB_PERCENTAGE");
             CheckBox_Hide.Text = lang.GetString("ST_CB_HIDE_WHEN_FULLSCREEN");
 
-            // TODO Timer tab
+            // Timer tab
             TabPage_Timer.Text = lang.GetString("ST_TAB_TIMER");
             Label_ReminderInterval.Text = lang.GetString("ST_LB_REMIND_INTERVAL");
             Label_RemindLater.Text = lang.GetString("ST_LB_REMIND_LATER");
@@ -48,7 +48,7 @@ namespace Time2Rest
 
             PictureBox_Back.BackColor = config.GetBackColor();
             PictureBox_Fore.BackColor = config.GetForeColor();
-            TextBox_Img.Text = config.backGroundImgPath;    // TODO VALIDATION
+            TextBox_Img.Text = config.backGroundImgPath;
             TextBox_Opacity.Value = (int)Math.Round(config.maxOpacity * 100);
             CheckBox_Hide.Checked = config.hideWhenFullscreen;
 
