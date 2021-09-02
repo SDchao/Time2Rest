@@ -16,7 +16,7 @@ namespace Time2Rest.Config
         public int alertAgainInterval = 3;
 
         // UI Config
-        public double maxOpacity = 0.6;
+        public double maxOpacity = 0.8;
         private Color _backColor = Color.Black;
         private Color _foreColor = Color.White;
 

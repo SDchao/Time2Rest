@@ -17,7 +17,7 @@ namespace Time2Rest.Config
             try
             {
                 string json = JsonConvert.SerializeObject(config, Formatting.Indented);
-                using (StreamWriter sw = new StreamWriter("config.json"))
+                using (StreamWriter sw = new StreamWriter(System.AppDomain.CurrentDomain.BaseDirectory + "config.json"))
                 {
                     sw.Write(json);
                 }
@@ -37,7 +37,7 @@ namespace Time2Rest.Config
             try
             {
                 string json = "";
-                using (StreamReader sr = new StreamReader("config.json"))
+                using (StreamReader sr = new StreamReader(System.AppDomain.CurrentDomain.BaseDirectory + "config.json"))
                 {
                     json = sr.ReadToEnd();
                 }

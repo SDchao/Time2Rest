@@ -30,9 +30,11 @@ namespace Time2Rest
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlertForm));
             this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.CountdownTimer = new System.Windows.Forms.Timer(this.components);
             this.ClockLabel = new System.Windows.Forms.Label();
+            this.TipLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // UpdateTimer
@@ -48,22 +50,42 @@ namespace Time2Rest
             // ClockLabel
             // 
             this.ClockLabel.AutoSize = true;
-            this.ClockLabel.Font = new System.Drawing.Font("微软雅黑", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ClockLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ClockLabel.Font = new System.Drawing.Font("Microsoft YaHei", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ClockLabel.ForeColor = System.Drawing.Color.White;
             this.ClockLabel.Location = new System.Drawing.Point(248, 146);
             this.ClockLabel.Name = "ClockLabel";
             this.ClockLabel.Size = new System.Drawing.Size(299, 124);
             this.ClockLabel.TabIndex = 0;
             this.ClockLabel.Text = "00:00";
+            this.ClockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ClockLabel.UseMnemonic = false;
+            // 
+            // TipLabel
+            // 
+            this.TipLabel.AutoSize = true;
+            this.TipLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TipLabel.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TipLabel.ForeColor = System.Drawing.Color.White;
+            this.TipLabel.Location = new System.Drawing.Point(284, 270);
+            this.TipLabel.Name = "TipLabel";
+            this.TipLabel.Size = new System.Drawing.Size(220, 17);
+            this.TipLabel.TabIndex = 1;
+            this.TipLabel.Text = "This is a TEST label, plz dont see me";
+            this.TipLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AlertForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.TipLabel);
             this.Controls.Add(this.ClockLabel);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AlertForm";
             this.ShowIcon = false;
@@ -81,6 +103,7 @@ namespace Time2Rest
         private System.Windows.Forms.Timer UpdateTimer;
         private System.Windows.Forms.Timer CountdownTimer;
         private System.Windows.Forms.Label ClockLabel;
+        private System.Windows.Forms.Label TipLabel;
     }
 }
 

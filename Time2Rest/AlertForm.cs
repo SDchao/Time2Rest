@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Resources;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using System.Windows.Forms;
 
 using Time2Rest.Hooks;
 using Time2Rest.Config;
+using Time2Rest.Languages;
 using NLog;
 using System.Runtime.InteropServices;
 
@@ -43,15 +45,21 @@ namespace Time2Rest
         int alertAgainInterval = 3;
 
         // UI Config
-        double maxOpacity = 0.6;
+        double maxOpacity = 0.8;
         Color userBackColor = Color.Black;
         Color userForeColor = Color.White;
         String backGroundImgPath = "";
+
+        // Lang
+        ResXResourceSet lang;
 
         public AlertForm()
         {
             InitializeComponent();
             DefaultHook.OnOperation += OnUserOperation;
+
+            // Lang
+            lang = LanguageManager.GetLangRes();
 
             // Init
             this.TopMost = true;
@@ -66,11 +74,13 @@ namespace Time2Rest
             this.UpdateTimer.Enabled = false;
 
             // Components Adjust
-            float clockHeight = this.Height * 0.25f;
+            float clockHeight = this.Height * 0.2f;
             ClockLabel.Font = new Font(ClockLabel.Font.Name, clockHeight * 0.75f);
-            ClockLabel.Top = (this.Height - ClockLabel.Height) / 2;
-            ClockLabel.Left = (this.Width - ClockLabel.Width) / 2;
 
+            float tipHeight = clockHeight * 0.15f;
+            TipLabel.Font = new Font(TipLabel.Font.Name, tipHeight * 0.75f);
+
+            UpdateLayout();
 
             // READ CONFIG
             logger.Debug("Start config reading");
@@ -83,6 +93,13 @@ namespace Time2Rest
             userBackColor = config.GetBackColor();
             userForeColor = config.GetForeColor();
             backGroundImgPath = config.backGroundImgPath;
+
+            logger.Info("Config reading completed");
+            this.BackColor = userBackColor;
+            if (!String.IsNullOrEmpty(backGroundImgPath))
+                this.BackgroundImage = Image.FromFile(backGroundImgPath);
+
+            ClockLabel.ForeColor = userForeColor;
 
             // Init after config reading
             remainingSeconds = alertInterval;
@@ -130,7 +147,8 @@ namespace Time2Rest
                         alertAgainCount += 1;
                         remainingSeconds = alertAgainInterval;
 
-                        // TODO text modify here
+                        // text modify
+                        TipLabel.Text = String.Format(lang.GetString("REST_INCOMPLETE"), Math.Floor(alertAgainInterval / 60.0) + 1);
                     }
                     else
                     {
@@ -149,18 +167,23 @@ namespace Time2Rest
         {
             if (status == FADE_IN)
             {
-                this.Opacity += 0.002;
+                UpdateClock();
+                this.Opacity += 0.005;
                 if (this.Opacity >= maxOpacity)
                 {
                     showingTime = 0;
                     status = SHOWING;
-                    UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
                 }
             }
+            else if (status == SHOWING)
+            {
+                UpdateClock();
+            }
             else if (status == FADE_OUT)
             {
-                this.Opacity -= 0.05;
+                UpdateClock();
+                this.Opacity -= 0.02;
                 if (this.Opacity <= 0)
                 {
                     this.Opacity = 0.0;
@@ -199,7 +222,9 @@ namespace Time2Rest
                     CountdownTimer.Enabled = false;
                     UpdateTimer.Enabled = true;
 
-                    // TODO text modify here
+                    // text modify
+                    TipLabel.Text = String.Format(lang.GetString("REST_TIP"), Math.Floor(alertInterval / 60.0 + alertAgainInterval * alertAgainCount / 60.0) + 1);
+                    UpdateClock();
 
                     this.Visible = true;
                 }
@@ -211,7 +236,8 @@ namespace Time2Rest
                 if (showingTime == minimumRestTime)
                 {
                     logger.Info("User has rested enough, waiting for operation");
-                    // TODO text modify
+                    // text modify
+                    TipLabel.Text = lang.GetString("REST_COMPLETE");
                 }
             }
         }
@@ -230,6 +256,28 @@ namespace Time2Rest
             base.OnLoad(e);
             var style = GetWindowLong(this.Handle, GWL_EXSTYLE);
             SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT);
+        }
+
+
+        private void UpdateLayout()
+        {
+
+            ClockLabel.Top = (int)((this.Height - ClockLabel.Height) / 2 - ClockLabel.Height * 0.25);
+            ClockLabel.Left = (this.Width - ClockLabel.Width) / 2;
+
+
+            TipLabel.Top = (int)(ClockLabel.Bottom + TipLabel.Height * 0.05);
+            TipLabel.Left = (this.Width - TipLabel.Width) / 2;
+        }
+
+        private void UpdateClock()
+        {
+            DateTime time = DateTime.Now;
+            string timeText = time.ToString("HH:mm:ss");
+
+            ClockLabel.Text = timeText;
+
+            UpdateLayout();
         }
     }
 }
