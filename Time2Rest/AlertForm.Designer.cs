@@ -41,7 +41,7 @@ namespace Time2Rest
             // 
             // UpdateTimer
             // 
-            this.UpdateTimer.Interval = 20;
+            this.UpdateTimer.Interval = 10;
             this.UpdateTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
             // 
             // CountdownTimer
@@ -78,6 +78,7 @@ namespace Time2Rest
             // 
             // NotifyIcon
             // 
+            this.NotifyIcon.ContextMenuStrip = this.NotifyMenu;
             this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
             this.NotifyIcon.Text = "Time2Rest";
             this.NotifyIcon.Visible = true;
@@ -86,7 +87,8 @@ namespace Time2Rest
             // NotifyMenu
             // 
             this.NotifyMenu.Name = "NotifyMenu";
-            this.NotifyMenu.Size = new System.Drawing.Size(181, 26);
+            this.NotifyMenu.Size = new System.Drawing.Size(61, 4);
+            this.NotifyMenu.MouseClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseClick);
             // 
             // AlertForm
             // 

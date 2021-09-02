@@ -71,8 +71,6 @@ namespace Time2Rest
 
             NotifyMenu.ItemClicked += NotifyMenu_ItemClicked;
 
-            NotifyMenu.AutoClose = true;
-
             // Init
             this.TopMost = true;
             this.Opacity = 0.0;
@@ -179,7 +177,7 @@ namespace Time2Rest
             if (status == FADE_IN)
             {
                 UpdateClock();
-                this.Opacity += 0.005;
+                this.Opacity += maxOpacity / 3000 * UpdateTimer.Interval;
                 if (this.Opacity >= maxOpacity)
                 {
                     showingTime = 0;
@@ -194,7 +192,7 @@ namespace Time2Rest
             else if (status == FADE_OUT)
             {
                 UpdateClock();
-                this.Opacity -= 0.02;
+                this.Opacity -= maxOpacity / 1000 * UpdateTimer.Interval;
                 if (this.Opacity <= 0)
                 {
                     this.Opacity = 0.0;
@@ -314,13 +312,12 @@ namespace Time2Rest
 
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (sender == NotifyIcon)   // prevent menu click event
             {
-                NotifyMenu.Show(MousePosition);
-            }
-            else if (e.Button == MouseButtons.Left)
-            {
-                StartRest();
+                if (e.Button == MouseButtons.Left)
+                {
+                    StartRest();
+                }
             }
         }
 
@@ -351,6 +348,7 @@ namespace Time2Rest
                     Application.Exit();
                     break;
             }
+            NotifyMenu.Close();
         }
 
         #endregion
