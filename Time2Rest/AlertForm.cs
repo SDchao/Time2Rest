@@ -97,8 +97,20 @@ namespace Time2Rest
             UpdateLayout();
 
             // READ CONFIG
-            logger.Debug("Start config reading");
+            UpdateConfig();
+
+        }
+
+        #region Config Reading
+        private void UpdateConfig()
+        {
             T2rConfig config = T2rConfigManager.ReadConfig();
+            UpdateConfig(config);
+        }
+
+        private void UpdateConfig(T2rConfig config)
+        {
+            logger.Debug("Applying config");
             alertInterval = config.alertInterval;
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
@@ -115,6 +127,7 @@ namespace Time2Rest
                 this.BackgroundImage = Image.FromFile(backGroundImgPath);
 
             ClockLabel.ForeColor = userForeColor;
+            TipLabel.ForeColor = userForeColor;
 
             // Init after config reading
             remainingSeconds = alertInterval;
@@ -124,6 +137,7 @@ namespace Time2Rest
             // Final step
             logger.Info("Init completed");
         }
+        #endregion
 
         #region Core Function
         private void AlertForm_Load(object sender, EventArgs e)
@@ -295,7 +309,7 @@ namespace Time2Rest
             SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE);
         }
 
-
+        #endregion
         private void UpdateLayout()
         {
 
@@ -322,7 +336,7 @@ namespace Time2Rest
             this.Hide();
         }
 
-        #endregion
+ 
 
         #region Notify Icon
 
@@ -357,8 +371,12 @@ namespace Time2Rest
                     StartRest();
                     break;
                 case 1:     // Setting
-                    Form SettingForm = new SettingForm();
-                    SettingForm.ShowDialog(Owner);
+                    SettingForm settingForm = new SettingForm();
+                    var result = settingForm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        UpdateConfig(settingForm.NewConfig);
+                    }
                     break;
                 case 2:     // About
                     break;

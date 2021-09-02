@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERR" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ERR_NOT_IMG_FILE" xml:space="preserve">
+    <value>Incorrect Image Path!</value>
+  </data>
   <data name="MENU_ABOUT" xml:space="preserve">
     <value>About Time2Rest</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="ST_BTN_SELECT" xml:space="preserve">
     <value>Select...</value>
+  </data>
+  <data name="ST_HIDE_WHEN_FULLSCREEN" xml:space="preserve">
+    <value>Hide when fullscreen application is running</value>
   </data>
   <data name="ST_LB_BACKCOLOR" xml:space="preserve">
     <value>Background Color:</value>

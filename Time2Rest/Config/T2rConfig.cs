@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Time2Rest.Config
 {
-    class T2rConfig
+    public class T2rConfig
     {
         // Config
         // Function Config
