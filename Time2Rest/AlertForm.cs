@@ -357,6 +357,8 @@ namespace Time2Rest
                     StartRest();
                     break;
                 case 1:     // Setting
+                    Form SettingForm = new SettingForm();
+                    SettingForm.ShowDialog(Owner);
                     break;
                 case 2:     // About
                     break;

@@ -138,4 +138,49 @@
   <data name="REST_TIP" xml:space="preserve">
     <value>您已连续使用电脑超过 {0} 分钟</value>
   </data>
+  <data name="ST_BTN_CANCEL" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ST_BTN_CONFIRM" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="ST_BTN_SELECT" xml:space="preserve">
+    <value>选择...</value>
+  </data>
+  <data name="ST_LB_BACKCOLOR" xml:space="preserve">
+    <value>背景颜色：</value>
+  </data>
+  <data name="ST_LB_BACK_IMG" xml:space="preserve">
+    <value>背景图片：</value>
+  </data>
+  <data name="ST_LB_FORECOLOR" xml:space="preserve">
+    <value>文字颜色：</value>
+  </data>
+  <data name="ST_LB_MAX_OPACITY" xml:space="preserve">
+    <value>最大透明度：</value>
+  </data>
+  <data name="ST_LB_MIN" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="ST_LB_MIN_REST_TIME" xml:space="preserve">
+    <value>最短休息时间：</value>
+  </data>
+  <data name="ST_LB_PERCENTAGE" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="ST_LB_REMIND_INTERVAL" xml:space="preserve">
+    <value>提醒间隔：</value>
+  </data>
+  <data name="ST_LB_REMIND_LATER" xml:space="preserve">
+    <value>稍后提醒间隔：</value>
+  </data>
+  <data name="ST_LB_SEC" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="ST_TAB_TIMER" xml:space="preserve">
+    <value>计时设置</value>
+  </data>
+  <data name="ST_TAB_VISUAL" xml:space="preserve">
+    <value>界面设置</value>
+  </data>
 </root>

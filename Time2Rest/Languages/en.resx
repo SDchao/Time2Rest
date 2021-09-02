@@ -138,4 +138,49 @@
   <data name="REST_TIP" xml:space="preserve">
     <value>You have been using the computer for {0} min</value>
   </data>
+  <data name="ST_BTN_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ST_BTN_CONFIRM" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ST_BTN_SELECT" xml:space="preserve">
+    <value>Select...</value>
+  </data>
+  <data name="ST_LB_BACKCOLOR" xml:space="preserve">
+    <value>Background Color:</value>
+  </data>
+  <data name="ST_LB_BACK_IMG" xml:space="preserve">
+    <value>Background Image: </value>
+  </data>
+  <data name="ST_LB_FORECOLOR" xml:space="preserve">
+    <value>Text Color: </value>
+  </data>
+  <data name="ST_LB_MAX_OPACITY" xml:space="preserve">
+    <value>Maximum Opacity: </value>
+  </data>
+  <data name="ST_LB_MIN" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="ST_LB_MIN_REST_TIME" xml:space="preserve">
+    <value>Shortest Rest Time: </value>
+  </data>
+  <data name="ST_LB_PERCENTAGE" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="ST_LB_REMIND_INTERVAL" xml:space="preserve">
+    <value>Remind Interval: </value>
+  </data>
+  <data name="ST_LB_REMIND_LATER" xml:space="preserve">
+    <value>Remind Later Interval: </value>
+  </data>
+  <data name="ST_LB_SEC" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="ST_TAB_TIMER" xml:space="preserve">
+    <value>Timer Settings</value>
+  </data>
+  <data name="ST_TAB_VISUAL" xml:space="preserve">
+    <value>Visual Settings</value>
+  </data>
 </root>

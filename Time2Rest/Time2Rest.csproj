@@ -65,6 +65,12 @@
     </Compile>
     <Compile Include="Config\T2rConfigManager.cs" />
     <Compile Include="Config\T2rConfig.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinInteractors\DefaultHook.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +87,9 @@
     <EmbeddedResource Include="Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Languages\zh-CN.resx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
