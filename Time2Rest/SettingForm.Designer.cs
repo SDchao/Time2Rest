@@ -44,6 +44,10 @@ namespace Time2Rest
             this.Label_MinRestTime = new System.Windows.Forms.Label();
             this.TextBox_Interval = new System.Windows.Forms.NumericUpDown();
             this.TabPage_Visual = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Label_MaxOpacity = new System.Windows.Forms.Label();
+            this.TextBox_Opacity = new System.Windows.Forms.NumericUpDown();
+            this.Label_Percentage = new System.Windows.Forms.Label();
             this.CheckBox_Hide = new System.Windows.Forms.CheckBox();
             this.TableLayout_Visual = new System.Windows.Forms.TableLayoutPanel();
             this.Label_ForeColor = new System.Windows.Forms.Label();
@@ -52,21 +56,17 @@ namespace Time2Rest
             this.TextBox_Img = new System.Windows.Forms.TextBox();
             this.PictureBox_Fore = new System.Windows.Forms.PictureBox();
             this.PictureBox_Back = new System.Windows.Forms.PictureBox();
-            this.Label_MaxOpacity = new System.Windows.Forms.Label();
-            this.Label_Percentage = new System.Windows.Forms.Label();
             this.Button_Select = new System.Windows.Forms.Button();
-            this.TextBox_Opacity = new System.Windows.Forms.NumericUpDown();
             this.TabControl = new System.Windows.Forms.TabControl();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.TabPage_Others = new System.Windows.Forms.TabPage();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.CheckBox_StartUp = new System.Windows.Forms.CheckBox();
-            this.openFileDialog_Ringtone = new System.Windows.Forms.OpenFileDialog();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.Label_Sound = new System.Windows.Forms.Label();
             this.TextBox_Sound = new System.Windows.Forms.TextBox();
             this.Button_SelectSound = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.CheckBox_StartUp = new System.Windows.Forms.CheckBox();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog_Ringtone = new System.Windows.Forms.OpenFileDialog();
             this.Button_Reset = new System.Windows.Forms.Button();
             this.TabPage_Timer.SuspendLayout();
             this.TableLayout_Timer.SuspendLayout();
@@ -74,13 +74,13 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_LaterInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Interval)).BeginInit();
             this.TabPage_Visual.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).BeginInit();
             this.TableLayout_Visual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Fore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).BeginInit();
             this.TabControl.SuspendLayout();
             this.TabPage_Others.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,6 +254,49 @@ namespace Time2Rest
             this.TabPage_Visual.Text = "TAB_VISUAL";
             this.TabPage_Visual.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.Label_MaxOpacity);
+            this.flowLayoutPanel1.Controls.Add(this.TextBox_Opacity);
+            this.flowLayoutPanel1.Controls.Add(this.Label_Percentage);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 93);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(451, 33);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // Label_MaxOpacity
+            // 
+            this.Label_MaxOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_MaxOpacity.AutoSize = true;
+            this.Label_MaxOpacity.Location = new System.Drawing.Point(3, 0);
+            this.Label_MaxOpacity.Name = "Label_MaxOpacity";
+            this.Label_MaxOpacity.Size = new System.Drawing.Size(120, 29);
+            this.Label_MaxOpacity.TabIndex = 7;
+            this.Label_MaxOpacity.Text = "Maximum Opacity: ";
+            this.Label_MaxOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TextBox_Opacity
+            // 
+            this.TextBox_Opacity.Location = new System.Drawing.Point(129, 3);
+            this.TextBox_Opacity.Name = "TextBox_Opacity";
+            this.TextBox_Opacity.Size = new System.Drawing.Size(53, 23);
+            this.TextBox_Opacity.TabIndex = 11;
+            // 
+            // Label_Percentage
+            // 
+            this.Label_Percentage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Percentage.AutoSize = true;
+            this.Label_Percentage.Location = new System.Drawing.Point(188, 0);
+            this.Label_Percentage.Name = "Label_Percentage";
+            this.Label_Percentage.Size = new System.Drawing.Size(74, 29);
+            this.Label_Percentage.TabIndex = 10;
+            this.Label_Percentage.Text = "percentage";
+            this.Label_Percentage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // CheckBox_Hide
             // 
             this.CheckBox_Hide.AutoSize = true;
@@ -359,32 +402,6 @@ namespace Time2Rest
             this.PictureBox_Back.TabStop = false;
             this.PictureBox_Back.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
             // 
-            // Label_MaxOpacity
-            // 
-            this.Label_MaxOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_MaxOpacity.AutoSize = true;
-            this.Label_MaxOpacity.Location = new System.Drawing.Point(3, 0);
-            this.Label_MaxOpacity.Name = "Label_MaxOpacity";
-            this.Label_MaxOpacity.Size = new System.Drawing.Size(120, 29);
-            this.Label_MaxOpacity.TabIndex = 7;
-            this.Label_MaxOpacity.Text = "Maximum Opacity: ";
-            this.Label_MaxOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Label_Percentage
-            // 
-            this.Label_Percentage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Percentage.AutoSize = true;
-            this.Label_Percentage.Location = new System.Drawing.Point(188, 0);
-            this.Label_Percentage.Name = "Label_Percentage";
-            this.Label_Percentage.Size = new System.Drawing.Size(74, 29);
-            this.Label_Percentage.TabIndex = 10;
-            this.Label_Percentage.Text = "percentage";
-            this.Label_Percentage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // Button_Select
             // 
             this.Button_Select.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -396,13 +413,6 @@ namespace Time2Rest
             this.Button_Select.Text = "Select...";
             this.Button_Select.UseVisualStyleBackColor = true;
             this.Button_Select.Click += new System.EventHandler(this.Button_Select_Click);
-            // 
-            // TextBox_Opacity
-            // 
-            this.TextBox_Opacity.Location = new System.Drawing.Point(129, 3);
-            this.TextBox_Opacity.Name = "TextBox_Opacity";
-            this.TextBox_Opacity.Size = new System.Drawing.Size(53, 23);
-            this.TextBox_Opacity.TabIndex = 11;
             // 
             // TabControl
             // 
@@ -416,15 +426,6 @@ namespace Time2Rest
             this.TabControl.Size = new System.Drawing.Size(477, 220);
             this.TabControl.TabIndex = 0;
             // 
-            // colorDialog
-            // 
-            this.colorDialog.AnyColor = true;
-            this.colorDialog.FullOpen = true;
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "Image files (*.jpg, *.png) | *.jpg; *.png";
-            // 
             // TabPage_Others
             // 
             this.TabPage_Others.Controls.Add(this.flowLayoutPanel2);
@@ -437,29 +438,15 @@ namespace Time2Rest
             this.TabPage_Others.Text = "TAB_OTHERS";
             this.TabPage_Others.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel2
             // 
-            this.flowLayoutPanel1.Controls.Add(this.Label_MaxOpacity);
-            this.flowLayoutPanel1.Controls.Add(this.TextBox_Opacity);
-            this.flowLayoutPanel1.Controls.Add(this.Label_Percentage);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 93);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(451, 33);
-            this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // CheckBox_StartUp
-            // 
-            this.CheckBox_StartUp.AutoSize = true;
-            this.CheckBox_StartUp.Location = new System.Drawing.Point(6, 44);
-            this.CheckBox_StartUp.Name = "CheckBox_StartUp";
-            this.CheckBox_StartUp.Size = new System.Drawing.Size(77, 21);
-            this.CheckBox_StartUp.TabIndex = 0;
-            this.CheckBox_StartUp.Text = "startup...";
-            this.CheckBox_StartUp.UseVisualStyleBackColor = true;
-            // 
-            // openFileDialog_Ringtone
-            // 
-            this.openFileDialog_Ringtone.Filter = "Sound Files (*.mp3, *.wav)|*.mp3; *.wav";
+            this.flowLayoutPanel2.Controls.Add(this.Label_Sound);
+            this.flowLayoutPanel2.Controls.Add(this.TextBox_Sound);
+            this.flowLayoutPanel2.Controls.Add(this.Button_SelectSound);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 6);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(457, 32);
+            this.flowLayoutPanel2.TabIndex = 8;
             // 
             // Label_Sound
             // 
@@ -495,15 +482,28 @@ namespace Time2Rest
             this.Button_SelectSound.UseVisualStyleBackColor = true;
             this.Button_SelectSound.Click += new System.EventHandler(this.Button_SelectSound_Click);
             // 
-            // flowLayoutPanel2
+            // CheckBox_StartUp
             // 
-            this.flowLayoutPanel2.Controls.Add(this.Label_Sound);
-            this.flowLayoutPanel2.Controls.Add(this.TextBox_Sound);
-            this.flowLayoutPanel2.Controls.Add(this.Button_SelectSound);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 6);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(457, 32);
-            this.flowLayoutPanel2.TabIndex = 8;
+            this.CheckBox_StartUp.AutoSize = true;
+            this.CheckBox_StartUp.Location = new System.Drawing.Point(6, 44);
+            this.CheckBox_StartUp.Name = "CheckBox_StartUp";
+            this.CheckBox_StartUp.Size = new System.Drawing.Size(77, 21);
+            this.CheckBox_StartUp.TabIndex = 0;
+            this.CheckBox_StartUp.Text = "startup...";
+            this.CheckBox_StartUp.UseVisualStyleBackColor = true;
+            // 
+            // colorDialog
+            // 
+            this.colorDialog.AnyColor = true;
+            this.colorDialog.FullOpen = true;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Image files (*.jpg, *.png) | *.jpg; *.png";
+            // 
+            // openFileDialog_Ringtone
+            // 
+            this.openFileDialog_Ringtone.Filter = "Sound Files (*.mp3, *.wav)|*.mp3; *.wav";
             // 
             // Button_Reset
             // 
@@ -542,16 +542,16 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Interval)).EndInit();
             this.TabPage_Visual.ResumeLayout(false);
             this.TabPage_Visual.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).EndInit();
             this.TableLayout_Visual.ResumeLayout(false);
             this.TableLayout_Visual.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Fore)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).EndInit();
             this.TabControl.ResumeLayout(false);
             this.TabPage_Others.ResumeLayout(false);
             this.TabPage_Others.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
