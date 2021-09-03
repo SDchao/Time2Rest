@@ -275,7 +275,7 @@ namespace Time2Rest
                             Thread.Sleep(5000);
                             StopRingtone();
                         });
-                        remainingSeconds = alertAgainInterval;
+                        remainingSeconds = alertAgainInterval;                     
                     }
                     else
                     {
