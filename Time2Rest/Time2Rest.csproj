@@ -312,7 +312,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PNG_SETTING.png" />

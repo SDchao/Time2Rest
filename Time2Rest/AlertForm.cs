@@ -21,7 +21,7 @@ namespace Time2Rest
         const int SHOWING = 2;
         const int FADE_OUT = 3;
 
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger;
 
         // WinAPI
         DefaultHook DefaultHook = new DefaultHook();
@@ -63,6 +63,9 @@ namespace Time2Rest
 
         public AlertForm()
         {
+            // Logger
+            logger = LogManager.GetCurrentClassLogger();
+
             // Lang
             lang = LanguageManager.GetLangRes();
 
