@@ -147,14 +147,23 @@
   <data name="ST_BTN_CANCEL" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ST_BTN_CLEAR" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="ST_BTN_CONFIRM" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="ST_BTN_RESET" xml:space="preserve">
+    <value>Reset to default</value>
   </data>
   <data name="ST_BTN_SELECT" xml:space="preserve">
     <value>Select...</value>
   </data>
   <data name="ST_CB_HIDE_WHEN_FULLSCREEN" xml:space="preserve">
     <value>Hide when fullscreen application is running</value>
+  </data>
+  <data name="ST_CB_STARTUP" xml:space="preserve">
+    <value>Auto run when Windows starts</value>
   </data>
   <data name="ST_LB_BACKCOLOR" xml:space="preserve">
     <value>Background Color:</value>
@@ -185,6 +194,12 @@
   </data>
   <data name="ST_LB_SEC" xml:space="preserve">
     <value>seconds</value>
+  </data>
+  <data name="ST_LB_SOUND" xml:space="preserve">
+    <value>Reminder Tone: </value>
+  </data>
+  <data name="ST_TAB_OTHERS" xml:space="preserve">
+    <value>Miscellaneous Settings</value>
   </data>
   <data name="ST_TAB_TIMER" xml:space="preserve">
     <value>Timer Settings</value>

@@ -33,7 +33,9 @@ namespace Time2Rest.Config
             get { return ColorTranslator.ToHtml(_foreColor); }
         }
 
-        public String backGroundImgPath = "";
+        public string backGroundImgPath = "";
+        public bool startup = true;
+        public string ringtonePath = "";
 
         public Color GetBackColor()
         {

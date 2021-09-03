@@ -147,14 +147,23 @@
   <data name="ST_BTN_CANCEL" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="ST_BTN_CLEAR" xml:space="preserve">
+    <value>清楚</value>
+  </data>
   <data name="ST_BTN_CONFIRM" xml:space="preserve">
     <value>确认</value>
+  </data>
+  <data name="ST_BTN_RESET" xml:space="preserve">
+    <value>重置为默认设置</value>
   </data>
   <data name="ST_BTN_SELECT" xml:space="preserve">
     <value>选择...</value>
   </data>
   <data name="ST_CB_HIDE_WHEN_FULLSCREEN" xml:space="preserve">
     <value>运行全屏应用时隐藏提醒</value>
+  </data>
+  <data name="ST_CB_STARTUP" xml:space="preserve">
+    <value>开机自动启动</value>
   </data>
   <data name="ST_LB_BACKCOLOR" xml:space="preserve">
     <value>背景颜色：</value>
@@ -185,6 +194,12 @@
   </data>
   <data name="ST_LB_SEC" xml:space="preserve">
     <value>秒</value>
+  </data>
+  <data name="ST_LB_SOUND" xml:space="preserve">
+    <value>提示铃声：</value>
+  </data>
+  <data name="ST_TAB_OTHERS" xml:space="preserve">
+    <value>杂项设置</value>
   </data>
   <data name="ST_TAB_TIMER" xml:space="preserve">
     <value>计时设置</value>

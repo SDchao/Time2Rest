@@ -38,14 +38,28 @@ namespace Time2Rest
             Label_Min2.Text = lang.GetString("ST_LB_MIN");
             Label_Sec.Text = lang.GetString("ST_LB_SEC");
 
+            // Others tab
+            TabPage_Others.Text = lang.GetString("ST_TAB_OTHERS");
+            CheckBox_StartUp.Text = lang.GetString("ST_CB_STARTUP");
+            Label_Sound.Text = lang.GetString("ST_LB_SOUND");
+            Button_SelectSound.Text = lang.GetString("ST_BTN_SELECT");
+
             // Buttons
+            Button_Reset.Text = lang.GetString("ST_BTN_RESET");
             Button_Confirm.Text = lang.GetString("ST_BTN_CONFIRM");
             Button_Cancel.Text = lang.GetString("ST_BTN_CANCEL");
 
 
             // Config loading
             var config = T2rConfigManager.ReadConfig();
+            LoadConfig(config);
 
+            // Final
+            openFileDialog.FileName = "";
+        }
+
+        private void LoadConfig(T2rConfig config)
+        {
             PictureBox_Back.BackColor = config.GetBackColor();
             PictureBox_Fore.BackColor = config.GetForeColor();
             TextBox_Img.Text = config.backGroundImgPath;
@@ -56,9 +70,10 @@ namespace Time2Rest
             TextBox_LaterInterval.Value = (config.alertAgainInterval / 60);
             TextBox_MinRest.Text = config.minimumRestTime.ToString();
 
-            // Final
-            openFileDialog.FileName = "";
-        }
+            CheckBox_StartUp.Checked = config.startup;
+            TextBox_Sound.Text = config.ringtonePath;
+        } 
+
         #region click events
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
@@ -78,6 +93,8 @@ namespace Time2Rest
             newConfig.alertInterval = (int)TextBox_Interval.Value * 60;
             newConfig.alertAgainInterval = (int)TextBox_LaterInterval.Value * 60;
             newConfig.minimumRestTime = (int)TextBox_MinRest.Value;
+            newConfig.startup = CheckBox_StartUp.Checked;
+            newConfig.ringtonePath = TextBox_Sound.Text;
 
             logger.Info("Writing config");
             T2rConfigManager.WriteConfig(newConfig);
@@ -123,7 +140,40 @@ namespace Time2Rest
             var lang = LanguageManager.GetLangRes();
             MessageBox.Show(lang.GetString("ERR_NOT_IMG_FILE"), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        private void Button_Reset_Click(object sender, EventArgs e)
+        {
+            T2rConfig defaultConfig = new T2rConfig();
+            LoadConfig(defaultConfig);
+        }
 
         #endregion
+
+        private void Button_SelectSound_Click(object sender, EventArgs e)
+        {
+            var result = openFileDialog_Ringtone.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                TextBox_Sound.Text = openFileDialog_Ringtone.FileName;
+            }
+        }
+
+        private void TextBox_Sound_Leave(object sender, EventArgs e)
+        {
+            var path = TextBox_Img.Text;
+            if (String.IsNullOrEmpty(path))
+                return;
+            if (System.IO.File.Exists(path))
+            {
+                foreach (string ext in new string[] { ".mp3", ".wav" })
+                {
+                    if (path.EndsWith(ext))
+                        return;
+                }
+            }
+
+            TextBox_Img.Text = "";
+            var lang = LanguageManager.GetLangRes();
+            MessageBox.Show(lang.GetString("ERR_NOT_SND_FILE"), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

@@ -59,6 +59,15 @@ namespace Time2Rest
             this.TabControl = new System.Windows.Forms.TabControl();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.TabPage_Others = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.CheckBox_StartUp = new System.Windows.Forms.CheckBox();
+            this.openFileDialog_Ringtone = new System.Windows.Forms.OpenFileDialog();
+            this.Label_Sound = new System.Windows.Forms.Label();
+            this.TextBox_Sound = new System.Windows.Forms.TextBox();
+            this.Button_SelectSound = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Button_Reset = new System.Windows.Forms.Button();
             this.TabPage_Timer.SuspendLayout();
             this.TableLayout_Timer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_MinRest)).BeginInit();
@@ -70,6 +79,9 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).BeginInit();
             this.TabControl.SuspendLayout();
+            this.TabPage_Others.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // Button_Confirm
@@ -231,6 +243,7 @@ namespace Time2Rest
             // 
             // TabPage_Visual
             // 
+            this.TabPage_Visual.Controls.Add(this.flowLayoutPanel1);
             this.TabPage_Visual.Controls.Add(this.CheckBox_Hide);
             this.TabPage_Visual.Controls.Add(this.TableLayout_Visual);
             this.TabPage_Visual.Location = new System.Drawing.Point(4, 26);
@@ -244,7 +257,7 @@ namespace Time2Rest
             // CheckBox_Hide
             // 
             this.CheckBox_Hide.AutoSize = true;
-            this.CheckBox_Hide.Location = new System.Drawing.Point(12, 138);
+            this.CheckBox_Hide.Location = new System.Drawing.Point(12, 163);
             this.CheckBox_Hide.Name = "CheckBox_Hide";
             this.CheckBox_Hide.Size = new System.Drawing.Size(61, 21);
             this.CheckBox_Hide.TabIndex = 1;
@@ -263,20 +276,15 @@ namespace Time2Rest
             this.TableLayout_Visual.Controls.Add(this.TextBox_Img, 1, 2);
             this.TableLayout_Visual.Controls.Add(this.PictureBox_Fore, 1, 0);
             this.TableLayout_Visual.Controls.Add(this.PictureBox_Back, 1, 1);
-            this.TableLayout_Visual.Controls.Add(this.Label_MaxOpacity, 0, 3);
-            this.TableLayout_Visual.Controls.Add(this.Label_Percentage, 2, 3);
             this.TableLayout_Visual.Controls.Add(this.Button_Select, 2, 2);
-            this.TableLayout_Visual.Controls.Add(this.TextBox_Opacity, 1, 3);
-            this.TableLayout_Visual.Location = new System.Drawing.Point(6, 6);
+            this.TableLayout_Visual.Location = new System.Drawing.Point(5, 6);
             this.TableLayout_Visual.Margin = new System.Windows.Forms.Padding(5);
             this.TableLayout_Visual.Name = "TableLayout_Visual";
-            this.TableLayout_Visual.RowCount = 5;
+            this.TableLayout_Visual.RowCount = 3;
             this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableLayout_Visual.Size = new System.Drawing.Size(471, 124);
+            this.TableLayout_Visual.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.TableLayout_Visual.Size = new System.Drawing.Size(456, 79);
             this.TableLayout_Visual.TabIndex = 0;
             // 
             // Label_ForeColor
@@ -313,7 +321,7 @@ namespace Time2Rest
             this.Label_BackImg.AutoSize = true;
             this.Label_BackImg.Location = new System.Drawing.Point(3, 48);
             this.Label_BackImg.Name = "Label_BackImg";
-            this.Label_BackImg.Size = new System.Drawing.Size(123, 32);
+            this.Label_BackImg.Size = new System.Drawing.Size(123, 31);
             this.Label_BackImg.TabIndex = 2;
             this.Label_BackImg.Text = "Background Image:";
             this.Label_BackImg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -357,9 +365,9 @@ namespace Time2Rest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_MaxOpacity.AutoSize = true;
-            this.Label_MaxOpacity.Location = new System.Drawing.Point(3, 80);
+            this.Label_MaxOpacity.Location = new System.Drawing.Point(3, 0);
             this.Label_MaxOpacity.Name = "Label_MaxOpacity";
-            this.Label_MaxOpacity.Size = new System.Drawing.Size(123, 29);
+            this.Label_MaxOpacity.Size = new System.Drawing.Size(120, 29);
             this.Label_MaxOpacity.TabIndex = 7;
             this.Label_MaxOpacity.Text = "Maximum Opacity: ";
             this.Label_MaxOpacity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -370,9 +378,9 @@ namespace Time2Rest
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label_Percentage.AutoSize = true;
-            this.Label_Percentage.Location = new System.Drawing.Point(375, 80);
+            this.Label_Percentage.Location = new System.Drawing.Point(188, 0);
             this.Label_Percentage.Name = "Label_Percentage";
-            this.Label_Percentage.Size = new System.Drawing.Size(93, 29);
+            this.Label_Percentage.Size = new System.Drawing.Size(74, 29);
             this.Label_Percentage.TabIndex = 10;
             this.Label_Percentage.Text = "percentage";
             this.Label_Percentage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -383,7 +391,7 @@ namespace Time2Rest
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Button_Select.Location = new System.Drawing.Point(375, 51);
             this.Button_Select.Name = "Button_Select";
-            this.Button_Select.Size = new System.Drawing.Size(69, 26);
+            this.Button_Select.Size = new System.Drawing.Size(69, 25);
             this.Button_Select.TabIndex = 4;
             this.Button_Select.Text = "Select...";
             this.Button_Select.UseVisualStyleBackColor = true;
@@ -391,15 +399,16 @@ namespace Time2Rest
             // 
             // TextBox_Opacity
             // 
-            this.TextBox_Opacity.Location = new System.Drawing.Point(132, 83);
+            this.TextBox_Opacity.Location = new System.Drawing.Point(129, 3);
             this.TextBox_Opacity.Name = "TextBox_Opacity";
-            this.TextBox_Opacity.Size = new System.Drawing.Size(237, 23);
+            this.TextBox_Opacity.Size = new System.Drawing.Size(53, 23);
             this.TextBox_Opacity.TabIndex = 11;
             // 
             // TabControl
             // 
             this.TabControl.Controls.Add(this.TabPage_Visual);
             this.TabControl.Controls.Add(this.TabPage_Timer);
+            this.TabControl.Controls.Add(this.TabPage_Others);
             this.TabControl.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TabControl.Location = new System.Drawing.Point(5, 5);
             this.TabControl.Name = "TabControl";
@@ -414,14 +423,105 @@ namespace Time2Rest
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog1";
             this.openFileDialog.Filter = "Image files (*.jpg, *.png) | *.jpg; *.png";
+            // 
+            // TabPage_Others
+            // 
+            this.TabPage_Others.Controls.Add(this.flowLayoutPanel2);
+            this.TabPage_Others.Controls.Add(this.CheckBox_StartUp);
+            this.TabPage_Others.Location = new System.Drawing.Point(4, 26);
+            this.TabPage_Others.Name = "TabPage_Others";
+            this.TabPage_Others.Padding = new System.Windows.Forms.Padding(3);
+            this.TabPage_Others.Size = new System.Drawing.Size(469, 190);
+            this.TabPage_Others.TabIndex = 2;
+            this.TabPage_Others.Text = "TAB_OTHERS";
+            this.TabPage_Others.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.Label_MaxOpacity);
+            this.flowLayoutPanel1.Controls.Add(this.TextBox_Opacity);
+            this.flowLayoutPanel1.Controls.Add(this.Label_Percentage);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 93);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(451, 33);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // CheckBox_StartUp
+            // 
+            this.CheckBox_StartUp.AutoSize = true;
+            this.CheckBox_StartUp.Location = new System.Drawing.Point(6, 44);
+            this.CheckBox_StartUp.Name = "CheckBox_StartUp";
+            this.CheckBox_StartUp.Size = new System.Drawing.Size(77, 21);
+            this.CheckBox_StartUp.TabIndex = 0;
+            this.CheckBox_StartUp.Text = "startup...";
+            this.CheckBox_StartUp.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog_Ringtone
+            // 
+            this.openFileDialog_Ringtone.Filter = "Sound Files (*.mp3, *.wav)|*.mp3; *.wav";
+            // 
+            // Label_Sound
+            // 
+            this.Label_Sound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Sound.AutoSize = true;
+            this.Label_Sound.Location = new System.Drawing.Point(3, 0);
+            this.Label_Sound.Name = "Label_Sound";
+            this.Label_Sound.Size = new System.Drawing.Size(67, 29);
+            this.Label_Sound.TabIndex = 5;
+            this.Label_Sound.Text = "Ringtone: ";
+            this.Label_Sound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // TextBox_Sound
+            // 
+            this.TextBox_Sound.AllowDrop = true;
+            this.TextBox_Sound.Location = new System.Drawing.Point(76, 3);
+            this.TextBox_Sound.Name = "TextBox_Sound";
+            this.TextBox_Sound.Size = new System.Drawing.Size(293, 23);
+            this.TextBox_Sound.TabIndex = 6;
+            this.TextBox_Sound.Leave += new System.EventHandler(this.TextBox_Sound_Leave);
+            // 
+            // Button_SelectSound
+            // 
+            this.Button_SelectSound.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Button_SelectSound.Location = new System.Drawing.Point(375, 3);
+            this.Button_SelectSound.Name = "Button_SelectSound";
+            this.Button_SelectSound.Size = new System.Drawing.Size(69, 23);
+            this.Button_SelectSound.TabIndex = 7;
+            this.Button_SelectSound.Text = "Select...";
+            this.Button_SelectSound.UseVisualStyleBackColor = true;
+            this.Button_SelectSound.Click += new System.EventHandler(this.Button_SelectSound_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.Label_Sound);
+            this.flowLayoutPanel2.Controls.Add(this.TextBox_Sound);
+            this.flowLayoutPanel2.Controls.Add(this.Button_SelectSound);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 6);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(457, 32);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // Button_Reset
+            // 
+            this.Button_Reset.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Button_Reset.Location = new System.Drawing.Point(9, 231);
+            this.Button_Reset.Name = "Button_Reset";
+            this.Button_Reset.Size = new System.Drawing.Size(123, 27);
+            this.Button_Reset.TabIndex = 3;
+            this.Button_Reset.Text = "BTN_RESET";
+            this.Button_Reset.UseVisualStyleBackColor = true;
+            this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 266);
+            this.Controls.Add(this.Button_Reset);
             this.Controls.Add(this.Button_Cancel);
             this.Controls.Add(this.Button_Confirm);
             this.Controls.Add(this.TabControl);
@@ -448,6 +548,12 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).EndInit();
             this.TabControl.ResumeLayout(false);
+            this.TabPage_Others.ResumeLayout(false);
+            this.TabPage_Others.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -482,5 +588,14 @@ namespace Time2Rest
         private System.Windows.Forms.NumericUpDown TextBox_Interval;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.TabPage TabPage_Others;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.CheckBox CheckBox_StartUp;
+        private System.Windows.Forms.OpenFileDialog openFileDialog_Ringtone;
+        private System.Windows.Forms.Label Label_Sound;
+        private System.Windows.Forms.TextBox TextBox_Sound;
+        private System.Windows.Forms.Button Button_SelectSound;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button Button_Reset;
     }
 }

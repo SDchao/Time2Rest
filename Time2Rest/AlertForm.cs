@@ -15,6 +15,7 @@ using Time2Rest.Languages;
 using NLog;
 using System.Runtime.InteropServices;
 
+
 namespace Time2Rest
 {
     public partial class AlertForm : Form
@@ -25,7 +26,7 @@ namespace Time2Rest
         const int SHOWING = 2;
         const int FADE_OUT = 3;
 
-        private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         // WinAPI
         DefaultHook DefaultHook = new DefaultHook();
@@ -247,15 +248,15 @@ namespace Time2Rest
                 logger.Debug("User operating time: {0}", userOperatingTime);
                 if (remainingSeconds <= 0)
                 {
-                    if (!FullscreenDetector.IsForegroundFullScreen())
-                    {
-                        logger.Info("Alert interval time up!");
-                        StartRest();
-                    }
-                    else
+                    if (FullscreenDetector.IsForegroundFullScreen() && hideWhenFullScreen)
                     {
                         if (remainingSeconds == 0)
                             logger.Info("Fullscreen Application detected");
+                    }
+                    else
+                    {
+                        logger.Info("Alert interval time up!");
+                        StartRest();
                     }
                 }
             }
@@ -336,7 +337,7 @@ namespace Time2Rest
             this.Hide();
         }
 
- 
+
 
         #region Notify Icon
 
