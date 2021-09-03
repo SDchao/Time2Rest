@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.IO;
+using NAudio.Wave;
 
 namespace Time2Rest.Config
 {
@@ -28,10 +30,38 @@ namespace Time2Rest.Config
             get { return ColorTranslator.ToHtml(_foreColor); }
         }
 
-        public string backGroundImgPath = "";
-        public bool startup = true;
-        public string ringtonePath = "";
+        private string _backGroundImgPath;
+        public string backGroundImgPath
+        {
+            set
+            {
+                if (ValidateImg(value))
+                    _backGroundImgPath = value;
+                else
+                    _backGroundImgPath = "";
+            }
+            get
+            {
+                return _backGroundImgPath;
+            }
+        }
 
+        private string _ringtonePath;
+        public string ringtonePath
+        {
+            set
+            {
+                if (ValidateSnd(value))
+                    _ringtonePath = value;
+                else
+                    _ringtonePath = "";
+            }
+            get
+            {
+                return _ringtonePath;
+            }
+        }
+        public bool startup = true;
         public Color GetBackColor()
         {
             return _backColor;
@@ -40,6 +70,32 @@ namespace Time2Rest.Config
         public Color GetForeColor()
         {
             return _foreColor;
+        }
+
+        public static bool ValidateImg(string path)
+        {
+            try
+            {
+                Image.FromFile(path);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool ValidateSnd(string path)
+        {
+            try
+            {
+                new AudioFileReader(path);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
