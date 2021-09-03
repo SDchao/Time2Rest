@@ -4,6 +4,8 @@ using System;
 using System.Drawing;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Time2Rest.Config;
 using Time2Rest.Languages;
@@ -203,12 +205,7 @@ namespace Time2Rest
                 status = FADE_OUT;
                 UpdateTimer.Enabled = true;
 
-                // Stop Ringtone
-                if (waveOutDevice.PlaybackState == PlaybackState.Playing)
-                {
-                    waveOutDevice.Stop();
-                    audioFileReader.Dispose();
-                }
+                StopRingtone();
             }
         }
 
@@ -271,7 +268,16 @@ namespace Time2Rest
                     if (FullscreenDetector.IsForegroundFullScreen() && hideWhenFullScreen)
                     {
                         if (remainingSeconds == 0)
+                        {
                             logger.Info("Fullscreen Application detected");
+                            PlayRingtone();
+
+                            Task.Run(() =>
+                            {
+                                Thread.Sleep(5000);
+                                StopRingtone();
+                            });
+                        }                      
                     }
                     else
                     {
@@ -293,6 +299,29 @@ namespace Time2Rest
             }
         }
 
+        private void PlayRingtone()
+        {
+            // Ringtone
+            if (hasRingtonePath)
+            {
+                audioFileReader = new AudioFileReader(ringtonePath);
+                waveOutDevice.Init(audioFileReader);
+                waveOutDevice.Play();
+            }
+        }
+
+        private void StopRingtone()
+        {
+            if (hasRingtonePath)
+            {
+                if (waveOutDevice.PlaybackState == PlaybackState.Playing)
+                {
+                    waveOutDevice.Stop();
+                    audioFileReader.Dispose();
+                }
+            }
+        }
+
         private void StartRest()
         {
             if (status != HIDING)
@@ -307,13 +336,7 @@ namespace Time2Rest
             TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
             UpdateClock();
 
-            // Ringtone
-            if (hasRingtonePath)
-            {
-                audioFileReader = new AudioFileReader(ringtonePath);
-                waveOutDevice.Init(audioFileReader);
-                waveOutDevice.Play();
-            }
+            PlayRingtone();
 
             this.Show();
         }
