@@ -1,6 +1,7 @@
 ﻿using NAudio.Wave;
 using NLog;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Resources;
 using System.Runtime.InteropServices;
@@ -431,8 +432,8 @@ namespace Time2Rest
                         UpdateConfig(settingForm.NewConfig);
                     }
                     break;
-                case 2:     // About TODO
-
+                case 2:     // About
+                    Process.Start("https://github.com/SDchao/Time2Rest/blob/main/README.md");
                     break;
                 case 3:     // Exit
                     Application.Exit();
