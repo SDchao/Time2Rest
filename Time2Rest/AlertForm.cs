@@ -14,7 +14,8 @@ using Time2Rest.Config;
 using Time2Rest.Languages;
 using NLog;
 using System.Runtime.InteropServices;
-
+using NAudio;
+using NAudio.Wave;
 
 namespace Time2Rest
 {
@@ -48,15 +49,21 @@ namespace Time2Rest
         int minimumRestTime;
         int alertAgainInterval;
         bool hideWhenFullScreen;
+        bool hasRingtonePath;
+        string ringtonePath;
 
         // UI Config
         double maxOpacity;
         Color userBackColor;
         Color userForeColor;
-        String backGroundImgPath;
+        string backGroundImgPath;
 
         // Lang
         ResXResourceSet lang;
+
+        // Ringtone
+        IWavePlayer waveOutDevice = new WaveOut();
+        AudioFileReader audioFileReader;
 
         #endregion
 
@@ -116,6 +123,8 @@ namespace Time2Rest
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
             hideWhenFullScreen = config.hideWhenFullscreen;
+            hasRingtonePath = !String.IsNullOrEmpty(config.ringtonePath);
+            ringtonePath = config.ringtonePath;
 
             maxOpacity = config.maxOpacity;
             userBackColor = config.GetBackColor();
@@ -149,6 +158,7 @@ namespace Time2Rest
         private void AlertForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DefaultHook.StopHook();
+            waveOutDevice.Dispose();
         }
 
         private void OnUserOperation()
@@ -189,6 +199,13 @@ namespace Time2Rest
 
                 status = FADE_OUT;
                 UpdateTimer.Enabled = true;
+
+                // Stop Ringtone
+                if (waveOutDevice.PlaybackState == PlaybackState.Playing)
+                {
+                    waveOutDevice.Stop();
+                    audioFileReader.Dispose();
+                }
             }
         }
 
@@ -286,6 +303,14 @@ namespace Time2Rest
             // text modify
             TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
             UpdateClock();
+
+            // Ringtone
+            if (hasRingtonePath)
+            {
+                audioFileReader = new AudioFileReader(ringtonePath);
+                waveOutDevice.Init(audioFileReader);
+                waveOutDevice.Play();
+            }
 
             this.Show();
         }
