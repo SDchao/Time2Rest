@@ -138,16 +138,13 @@ namespace Time2Rest
 
             TextBox_Img.Text = "";
             var lang = LanguageManager.GetLangRes();
-            MessageBox.Show(lang.GetString("ERR_NOT_IMG_FILE"), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(String.Format(lang.GetString("ERR_NOT_IMG_FILE"), path), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void Button_Reset_Click(object sender, EventArgs e)
         {
             T2rConfig defaultConfig = new T2rConfig();
             LoadConfig(defaultConfig);
         }
-
-        #endregion
-
         private void Button_SelectSound_Click(object sender, EventArgs e)
         {
             var result = openFileDialog_Ringtone.ShowDialog();
@@ -159,7 +156,7 @@ namespace Time2Rest
 
         private void TextBox_Sound_Leave(object sender, EventArgs e)
         {
-            var path = TextBox_Img.Text;
+            var path = TextBox_Sound.Text;
             if (String.IsNullOrEmpty(path))
                 return;
             if (System.IO.File.Exists(path))
@@ -171,9 +168,14 @@ namespace Time2Rest
                 }
             }
 
-            TextBox_Img.Text = "";
+            TextBox_Sound.Text = "";
             var lang = LanguageManager.GetLangRes();
-            MessageBox.Show(lang.GetString("ERR_NOT_SND_FILE"), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(String.Format(lang.GetString("ERR_NOT_SND_FILE"), path), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        #endregion
     }
+
+
+
 }

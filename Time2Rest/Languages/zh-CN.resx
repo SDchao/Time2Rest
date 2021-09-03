@@ -121,7 +121,10 @@
     <value>错误</value>
   </data>
   <data name="ERR_NOT_IMG_FILE" xml:space="preserve">
-    <value>不正确的图片路径！</value>
+    <value>“{0}”不是有效的图片文件！</value>
+  </data>
+  <data name="ERR_NOT_SND_FILE" xml:space="preserve">
+    <value>“{0}” 不是有效的音频文件！</value>
   </data>
   <data name="MENU_ABOUT" xml:space="preserve">
     <value>关于 Time2Rest</value>

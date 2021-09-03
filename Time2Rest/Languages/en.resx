@@ -121,7 +121,10 @@
     <value>Error</value>
   </data>
   <data name="ERR_NOT_IMG_FILE" xml:space="preserve">
-    <value>Incorrect Image Path!</value>
+    <value>"{0}" is not a valid image file!</value>
+  </data>
+  <data name="ERR_NOT_SND_FILE" xml:space="preserve">
+    <value>"{0}" is not a valid sound file!</value>
   </data>
   <data name="MENU_ABOUT" xml:space="preserve">
     <value>About Time2Rest</value>
@@ -163,7 +166,7 @@
     <value>Hide when fullscreen application is running</value>
   </data>
   <data name="ST_CB_STARTUP" xml:space="preserve">
-    <value>Auto run when Windows starts</value>
+    <value>Run at Windows startup</value>
   </data>
   <data name="ST_LB_BACKCOLOR" xml:space="preserve">
     <value>Background Color:</value>
