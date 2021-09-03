@@ -1,9 +1,8 @@
-﻿using System.Windows.Forms;
-
-using Time2Rest.Languages;
-using Time2Rest.Config;
-using System;
+﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
+using Time2Rest.Config;
+using Time2Rest.Languages;
 
 namespace Time2Rest
 {
@@ -15,7 +14,7 @@ namespace Time2Rest
         {
             InitializeComponent();
 
-            
+
             // lang
             var lang = LanguageManager.GetLangRes();
 
@@ -72,7 +71,7 @@ namespace Time2Rest
 
             CheckBox_StartUp.Checked = config.startup;
             TextBox_Sound.Text = config.ringtonePath;
-        } 
+        }
 
         #region click events
         private void Button_Cancel_Click(object sender, EventArgs e)
@@ -129,7 +128,7 @@ namespace Time2Rest
                 return;
             if (System.IO.File.Exists(path))
             {
-                foreach (string ext in new string[] {".jpg", ".png"})
+                foreach (string ext in new string[] { ".jpg", ".png" })
                 {
                     if (path.EndsWith(ext))
                         return;

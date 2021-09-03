@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using NAudio.Wave;
+using NLog;
+using System;
 using System.Drawing;
 using System.Resources;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
-using Time2Rest.WinInteractors;
 using Time2Rest.Config;
 using Time2Rest.Languages;
-using NLog;
-using System.Runtime.InteropServices;
-using NAudio;
-using NAudio.Wave;
+using Time2Rest.WinInteractors;
 
 namespace Time2Rest
 {

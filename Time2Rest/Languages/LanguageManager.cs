@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-
-using NLog;
-using System.Reflection;
+using System.Resources;
 using System.Windows.Forms;
 
 namespace Time2Rest.Languages

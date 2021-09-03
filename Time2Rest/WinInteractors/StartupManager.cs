@@ -1,9 +1,4 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Time2Rest.WinInteractors
@@ -16,7 +11,7 @@ namespace Time2Rest.WinInteractors
         {
             if (needStartup)
             {
-                rkApp.SetValue("Time2Rest",'"' + Application.ExecutablePath.Replace("/", "\\") + '"');
+                rkApp.SetValue("Time2Rest", '"' + Application.ExecutablePath.Replace("/", "\\") + '"');
             }
             else
             {
