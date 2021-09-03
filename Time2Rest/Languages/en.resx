@@ -210,4 +210,7 @@
   <data name="ST_TAB_VISUAL" xml:space="preserve">
     <value>Visual Settings</value>
   </data>
+  <data name="TIP_STARTED" xml:space="preserve">
+    <value>Time2Rest has minimized to tray icon</value>
+  </data>
 </root>

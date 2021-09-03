@@ -210,4 +210,7 @@
   <data name="ST_TAB_VISUAL" xml:space="preserve">
     <value>界面设置</value>
   </data>
+  <data name="TIP_STARTED" xml:space="preserve">
+    <value>Time2Rest 已最小化至托盘图标</value>
+  </data>
 </root>
