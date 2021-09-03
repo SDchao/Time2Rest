@@ -8,6 +8,7 @@ using System.IO;
 
 using NLog;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace Time2Rest.Languages
 {
@@ -29,6 +30,14 @@ namespace Time2Rest.Languages
             else
             {
                 logger.Warn("Res for current language not found, using default");
+
+                if (!File.Exists(defaultPath))
+                {
+                    logger.Fatal("Unable to find default language!");
+                    MessageBox.Show("Unable to load language file, make sure Languages Folder is here!", "FATAL_ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+                }
+
                 return new ResXResourceSet(defaultPath);
             }
         }
