@@ -261,6 +261,7 @@
     <Compile Include="SettingForm.Designer.cs">
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinInteractors\CheckUniqueProcess.cs" />
     <Compile Include="WinInteractors\DefaultHook.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Program.cs" />

@@ -61,11 +61,19 @@ namespace Time2Rest
 
         public AlertForm()
         {
+            // Lang
+            lang = LanguageManager.GetLangRes();
+
+            if (CheckUniqueProcess.CheckUnique())
+            {
+                MessageBox.Show(lang.GetString("TIP_STARTED"));
+                Environment.Exit(0);
+            }
+
             InitializeComponent();
             DefaultHook.OnOperation += OnUserOperation;
 
-            // Lang
-            lang = LanguageManager.GetLangRes();
+            
 
             // Menu Lang
             NotifyMenu.Items.Add(lang.GetString("MENU_REST"), Resource.PNG_REST);
