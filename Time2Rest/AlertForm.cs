@@ -144,8 +144,11 @@ namespace Time2Rest
             remainingSpareSeconds = maxSpareSeconds;
             CountdownTimer.Enabled = true;
 
+            // Startup
+            StartupManager.SetStartup(config.startup);
+
             // Final step
-            logger.Info("Init completed");
+            logger.Info("Config applied");
         }
         #endregion
 
