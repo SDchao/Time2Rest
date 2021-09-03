@@ -16,7 +16,7 @@ namespace Time2Rest.WinInteractors
         {
             if (needStartup)
             {
-                rkApp.SetValue("Time2Rest", Application.ExecutablePath);
+                rkApp.SetValue("Time2Rest",'"' + Application.ExecutablePath.Replace("/", "\\") + '"');
             }
             else
             {
