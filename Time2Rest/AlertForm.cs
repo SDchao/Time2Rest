@@ -261,6 +261,7 @@ namespace Time2Rest
                 {
                     logger.Info("User has left, pausing");
                     remainingSeconds = alertInterval;
+                    userOperatingTime = 0;
                     CountdownTimer.Enabled = false;
                 }
 
