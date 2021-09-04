@@ -9,11 +9,11 @@ namespace Time2Rest
     public partial class SettingForm : Form
     {
         public T2rConfig NewConfig { get; set; }
-        NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public SettingForm()
         {
             InitializeComponent();
-
 
             // lang
             var lang = LanguageManager.GetLangRes();
@@ -48,7 +48,6 @@ namespace Time2Rest
             Button_Confirm.Text = lang.GetString("ST_BTN_CONFIRM");
             Button_Cancel.Text = lang.GetString("ST_BTN_CANCEL");
 
-
             // Config loading
             var config = T2rConfigManager.ReadConfig();
             LoadConfig(config);
@@ -74,6 +73,7 @@ namespace Time2Rest
         }
 
         #region click events
+
         private void Button_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -112,6 +112,7 @@ namespace Time2Rest
                 PictureBox.BackColor = color;
             }
         }
+
         private void Button_Select_Click(object sender, EventArgs e)
         {
             var result = openFileDialog.ShowDialog();
@@ -139,11 +140,13 @@ namespace Time2Rest
             var lang = LanguageManager.GetLangRes();
             MessageBox.Show(String.Format(lang.GetString("ERR_NOT_IMG_FILE"), path), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
         private void Button_Reset_Click(object sender, EventArgs e)
         {
             T2rConfig defaultConfig = new T2rConfig();
             LoadConfig(defaultConfig);
         }
+
         private void Button_SelectSound_Click(object sender, EventArgs e)
         {
             var result = openFileDialog_Ringtone.ShowDialog();
@@ -172,9 +175,6 @@ namespace Time2Rest
             MessageBox.Show(String.Format(lang.GetString("ERR_NOT_SND_FILE"), path), lang.GetString("ERR"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        #endregion
+        #endregion click events
     }
-
-
-
 }

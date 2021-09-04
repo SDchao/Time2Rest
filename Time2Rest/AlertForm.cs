@@ -17,50 +17,55 @@ namespace Time2Rest
     public partial class AlertForm : Form
     {
         #region variables
-        const int HIDING = -1;
-        const int FADE_IN = 1;
-        const int SHOWING = 2;
-        const int FADE_OUT = 3;
+
+        private const int HIDING = -1;
+        private const int FADE_IN = 1;
+        private const int SHOWING = 2;
+        private const int FADE_OUT = 3;
 
         private readonly Logger logger;
 
         // WinAPI
-        DefaultHook DefaultHook = new DefaultHook();
+        private DefaultHook DefaultHook = new DefaultHook();
 
         // Display
-        int status = HIDING;
+        private int status = HIDING;
 
         // Time counter
-        int remainingSeconds = -1;
-        readonly object countdownLock = new object();
-        readonly int maxSpareSeconds = 5 * 60;
-        int remainingSpareSeconds;
-        int showingTime = 0;
-        int userOperatingTime = 0;
+        private int remainingSeconds = -1;
+
+        private readonly object countdownLock = new object();
+        private readonly int maxSpareSeconds = 5 * 60;
+        private int remainingSpareSeconds;
+        private int showingTime = 0;
+        private int userOperatingTime = 0;
 
         // Config
         // Function Config
-        int alertInterval;
-        int minimumRestTime;
-        int alertAgainInterval;
-        bool hideWhenFullScreen;
-        bool hasRingtonePath;
-        string ringtonePath;
+        private int alertInterval;
+
+        private int minimumRestTime;
+        private int alertAgainInterval;
+        private bool hideWhenFullScreen;
+        private bool hasRingtonePath;
+        private string ringtonePath;
 
         // UI Config
-        double maxOpacity;
-        Color userBackColor;
-        Color userForeColor;
-        string backGroundImgPath;
+        private double maxOpacity;
+
+        private Color userBackColor;
+        private Color userForeColor;
+        private string backGroundImgPath;
 
         // Lang
-        ResXResourceSet lang;
+        private ResXResourceSet lang;
 
         // Ringtone
-        IWavePlayer waveOutDevice = new WaveOut();
-        AudioFileReader audioFileReader;
+        private IWavePlayer waveOutDevice = new WaveOut();
 
-        #endregion
+        private AudioFileReader audioFileReader;
+
+        #endregion variables
 
         public AlertForm()
         {
@@ -78,8 +83,6 @@ namespace Time2Rest
 
             InitializeComponent();
             DefaultHook.OnOperation += OnUserOperation;
-
-
 
             // Menu Lang
             NotifyMenu.Items.Add(lang.GetString("MENU_REST"), Resource.PNG_REST);
@@ -116,10 +119,10 @@ namespace Time2Rest
             UpdateConfig();
 
             logger.Info("Alert Form Init Completed");
-
         }
 
         #region Config Reading
+
         private void UpdateConfig()
         {
             T2rConfig config = T2rConfigManager.ReadConfig();
@@ -162,9 +165,11 @@ namespace Time2Rest
             // Final step
             logger.Info("Config applied");
         }
-        #endregion
+
+        #endregion Config Reading
 
         #region Core Function
+
         private void AlertForm_Load(object sender, EventArgs e)
         {
             DefaultHook.StartHook();
@@ -189,7 +194,7 @@ namespace Time2Rest
                     {
                         logger.Info("User came back, enabling count down timer");
                         CountdownTimer.Enabled = true;
-                    }                 
+                    }
                 }
             }
             else if (status == SHOWING)
@@ -296,7 +301,7 @@ namespace Time2Rest
                             Thread.Sleep(5000);
                             StopRingtone();
                         });
-                        remainingSeconds = alertAgainInterval;                     
+                        remainingSeconds = alertAgainInterval;
                     }
                     else
                     {
@@ -367,18 +372,22 @@ namespace Time2Rest
             this.Show();
         }
 
-        #endregion
+        #endregion Core Function
 
         // Mouse penetrate and no focus
+
         #region Mouse passthrough
+
         [DllImport("user32.dll", SetLastError = true)]
-        static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
         [DllImport("user32.dll")]
-        static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-        const int GWL_EXSTYLE = -20;
-        const int WS_EX_LAYERED = 0x80000;
-        const int WS_EX_TRANSPARENT = 0x20;
-        const int WS_EX_NOACTIVATE = 0x08000000;
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_LAYERED = 0x80000;
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -387,13 +396,17 @@ namespace Time2Rest
             SetWindowLong(this.Handle, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE);
         }
 
-        #endregion
+        private void AlertForm_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        #endregion Mouse passthrough
+
         private void UpdateLayout()
         {
-
             ClockLabel.Top = (int)((this.Height - ClockLabel.Height) / 2 - ClockLabel.Height * 0.25);
             ClockLabel.Left = (this.Width - ClockLabel.Width) / 2;
-
 
             TipLabel.Top = (int)(ClockLabel.Bottom + TipLabel.Height * 0.05);
             TipLabel.Left = (this.Width - TipLabel.Width) / 2;
@@ -409,13 +422,6 @@ namespace Time2Rest
             UpdateLayout();
         }
 
-        private void AlertForm_Shown(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
-
-
-
         #region Notify Icon
 
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
@@ -424,12 +430,13 @@ namespace Time2Rest
             {
                 if (e.Button == MouseButtons.Left)
                 {
+                    logger.Info("User start to rest manually");
                     StartRest();
                 }
             }
         }
 
-        #endregion
+        #endregion Notify Icon
 
         #region Notify Menu Methods
 
@@ -448,6 +455,7 @@ namespace Time2Rest
                 case 0:     // Rest now
                     StartRest();
                     break;
+
                 case 1:     // Setting
                     SettingForm settingForm = new SettingForm();
                     var result = settingForm.ShowDialog();
@@ -456,9 +464,11 @@ namespace Time2Rest
                         UpdateConfig(settingForm.NewConfig);
                     }
                     break;
+
                 case 2:     // About
                     Process.Start("https://github.com/SDchao/Time2Rest/blob/main/README.md");
                     break;
+
                 case 3:     // Exit
                     Application.Exit();
                     break;
@@ -466,7 +476,6 @@ namespace Time2Rest
             NotifyMenu.Close();
         }
 
-        #endregion
-
+        #endregion Notify Menu Methods
     }
 }

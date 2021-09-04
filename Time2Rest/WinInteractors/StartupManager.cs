@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Time2Rest.WinInteractors
 {
-    class StartupManager
+    internal class StartupManager
     {
-        static RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        private static RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
         public static void SetStartup(bool needStartup)
         {

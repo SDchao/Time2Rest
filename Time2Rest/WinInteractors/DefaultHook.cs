@@ -2,9 +2,10 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+
 namespace Time2Rest.WinInteractors
 {
-    class DefaultHook
+    internal class DefaultHook
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         protected static extern int SetWindowsHookEx(int idHook, HookProc lpfn, IntPtr hInstance, int threadId);
@@ -15,16 +16,15 @@ namespace Time2Rest.WinInteractors
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         protected static extern int CallNextHookEx(int idHook, int nCode, Int32 wParam, IntPtr lParam);
 
-
         protected delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
 
-        const int WH_KEYBOARD_LL = 13;
-        const int WH_MOUSE_LL = 14;
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WH_MOUSE_LL = 14;
 
-        static int hKeyboardHook = 0;
-        static int hMouseHook = 0;
-        HookProc KeyboardHookProcDelegate;
-        HookProc MouseHookProcDelegate;
+        private static int hKeyboardHook = 0;
+        private static int hMouseHook = 0;
+        private HookProc KeyboardHookProcDelegate;
+        private HookProc MouseHookProcDelegate;
         private readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public event Action OnOperation;
@@ -81,7 +81,6 @@ namespace Time2Rest.WinInteractors
                     throw new Exception("Unable to hook mouse");
                 }
                 Logger.Info("Hooked Mouse");
-
             }
         }
 

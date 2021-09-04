@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Time2Rest.WinInteractors
 {
-    class FullscreenDetector
+    internal class FullscreenDetector
     {
         [StructLayout(LayoutKind.Sequential)]
         private struct RECT

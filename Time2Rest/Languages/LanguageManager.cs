@@ -5,11 +5,12 @@ using System.Windows.Forms;
 
 namespace Time2Rest.Languages
 {
-    class LanguageManager
+    internal class LanguageManager
     {
         private readonly static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private readonly static string basePath = AppDomain.CurrentDomain.BaseDirectory;
         private readonly static string defaultPath = basePath + @"Languages\" + "en" + ".resx";
+
         public static ResXResourceSet GetLangRes()
         {
             string cultureName = System.Globalization.CultureInfo.CurrentCulture.Name;

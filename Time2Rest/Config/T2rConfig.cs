@@ -1,6 +1,5 @@
-﻿using System.Drawing;
-using System.IO;
-using NAudio.Wave;
+﻿using NAudio.Wave;
+using System.Drawing;
 
 namespace Time2Rest.Config
 {
@@ -9,12 +8,14 @@ namespace Time2Rest.Config
         // Config
         // Function Config
         public int alertInterval = 30 * 60;
+
         public int minimumRestTime = 20;
         public int alertAgainInterval = 1 * 60;
         public bool hideWhenFullscreen = true;
 
         // UI Config
         public double maxOpacity = 0.8;
+
         private Color _backColor = Color.Black;
         private Color _foreColor = Color.White;
 
@@ -31,6 +32,7 @@ namespace Time2Rest.Config
         }
 
         private string _backGroundImgPath;
+
         public string backGroundImgPath
         {
             set
@@ -47,6 +49,7 @@ namespace Time2Rest.Config
         }
 
         private string _ringtonePath;
+
         public string ringtonePath
         {
             set
@@ -61,7 +64,9 @@ namespace Time2Rest.Config
                 return _ringtonePath;
             }
         }
+
         public bool startup = true;
+
         public Color GetBackColor()
         {
             return _backColor;

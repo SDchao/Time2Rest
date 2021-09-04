@@ -4,15 +4,14 @@ using System.Windows.Forms;
 
 namespace Time2Rest
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-
             // Logger
             var config = new NLog.Config.LoggingConfiguration();
             var fileTarget = new NLog.Targets.FileTarget("logfile")

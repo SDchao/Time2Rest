@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Time2Rest.Config
 {
-    class T2rConfigManager
+    internal class T2rConfigManager
     {
         public static void WriteConfig(T2rConfig config)
         {
