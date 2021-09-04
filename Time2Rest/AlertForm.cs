@@ -12,6 +12,8 @@ using Time2Rest.Config;
 using Time2Rest.Languages;
 using Time2Rest.WinInteractors;
 
+using Time2Rest.Updater;
+
 namespace Time2Rest
 {
     public partial class AlertForm : Form
@@ -80,6 +82,12 @@ namespace Time2Rest
 
             // Logger
             logger = LogManager.GetCurrentClassLogger();
+
+            // Update Check
+            Task.Run(() =>
+            {
+                UpdateChecker.CheckUpdate();
+            });
 
             InitializeComponent();
             DefaultHook.OnOperation += OnUserOperation;
@@ -328,10 +336,17 @@ namespace Time2Rest
             // Ringtone
             if (hasRingtonePath)
             {
-                logger.Info("Playing ringtone");
-                audioFileReader = new AudioFileReader(ringtonePath);
-                waveOutDevice.Init(audioFileReader);
-                waveOutDevice.Play();
+                try
+                {
+                    logger.Info("Playing ringtone");
+                    waveOutDevice.Init(audioFileReader);
+                    waveOutDevice.Play();
+                }
+                catch (Exception e)
+                {
+                    logger.Error("Unable to start ringtone");
+                    logger.Error(e);
+                }
             }
         }
 
@@ -340,9 +355,17 @@ namespace Time2Rest
             if (hasRingtonePath)
             {
                 logger.Info("Stopping ringtone");
-                if (waveOutDevice.PlaybackState == PlaybackState.Playing)
+                try
                 {
-                    waveOutDevice.Stop();
+                    if (waveOutDevice.PlaybackState == PlaybackState.Playing)
+                    {
+                        waveOutDevice.Stop();
+                    }
+                }
+                catch (Exception e)
+                {
+                    logger.Error("Exception when stopping ringtone");
+                    logger.Error(e);
                 }
             }
         }
@@ -350,7 +373,15 @@ namespace Time2Rest
         private void OnWaveOutDeviceStopped(object sender, EventArgs e)
         {
             logger.Info("Reseting audio reader");
-            audioFileReader.Seek(0, System.IO.SeekOrigin.Begin);
+            try
+            {
+                audioFileReader.Seek(0, System.IO.SeekOrigin.Begin);
+            }
+            catch (Exception e)
+            {
+                logger.Error("Unable to reset audio reader");
+                logger.Error(e);
+            }
         }
 
         private void StartRest()

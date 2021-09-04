@@ -33,9 +33,20 @@ namespace Time2Rest
 
             LogManager.Configuration = config;
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AlertForm());
+            // All logger
+            var logger = NLog.LogManager.GetCurrentClassLogger();
+
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new AlertForm());
+            }
+            catch (Exception e)
+            {
+                logger.Fatal(e);
+                Application.Exit();
+            }
         }
     }
 }
