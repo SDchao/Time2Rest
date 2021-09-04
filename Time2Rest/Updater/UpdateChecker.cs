@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
 namespace Time2Rest.Updater
 {
-    class UpdateChecker
+    internal class UpdateChecker
     {
-        static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        const string resXmlUrl = @"https://gitee.com/SDchao/Time2Rest/raw/main/Time2Rest/Resource.resx";
-        const string releaseUrl = "https://github.com/SDchao/Time2Rest/releases/latest";
+        private static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private const string resXmlUrl = @"https://gitee.com/SDchao/Time2Rest/raw/main/Time2Rest/Resource.resx";
+        private const string releaseUrl = "https://github.com/SDchao/Time2Rest/releases/latest";
 
         public static void CheckUpdate()
         {
@@ -55,7 +51,6 @@ namespace Time2Rest.Updater
                 logger.Warn("Unable to check update");
                 logger.Warn(e);
             }
-
         }
     }
 }

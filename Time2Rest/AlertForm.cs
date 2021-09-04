@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Time2Rest.Config;
 using Time2Rest.Languages;
-using Time2Rest.WinInteractors;
-
 using Time2Rest.Updater;
+using Time2Rest.WinInteractors;
 
 namespace Time2Rest
 {
