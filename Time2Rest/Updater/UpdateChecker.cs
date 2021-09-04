@@ -11,7 +11,7 @@ namespace Time2Rest.Updater
     class UpdateChecker
     {
         static readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
-        const string resXmlUrl = @"D:\Projects\C#\Time2Rest\Time2Rest\Resource.resx";
+        const string resXmlUrl = @"https://gitee.com/SDchao/Time2Rest/raw/main/Time2Rest/Resource.resx";
         const string releaseUrl = "https://github.com/SDchao/Time2Rest/releases/latest";
 
         public static void CheckUpdate()
