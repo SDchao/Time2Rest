@@ -16,7 +16,7 @@ namespace Time2Rest
             var config = new NLog.Config.LoggingConfiguration();
             var fileTarget = new NLog.Targets.FileTarget("logfile")
             {
-                Layout = @"${longdate} ${logger} ${message}${exception:format=ToString}",
+                Layout = @"${longdate} ${logger} ${message}${exception:format=ToString,StackTrace}",
                 FileName = @"${basedir}/Logs/logfile.txt",
                 KeepFileOpen = true,
                 DeleteOldFileOnStartup = true,
