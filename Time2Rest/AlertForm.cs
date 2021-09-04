@@ -101,6 +101,8 @@ namespace Time2Rest
 
             this.UpdateTimer.Enabled = false;
 
+            this.waveOutDevice.PlaybackStopped += OnWaveOutDeviceStopped;
+
             // Components Adjust
             float clockHeight = this.Height * 0.2f;
             ClockLabel.Font = new Font(ClockLabel.Font.Name, clockHeight * 0.75f);
@@ -146,6 +148,9 @@ namespace Time2Rest
             ClockLabel.ForeColor = userForeColor;
             TipLabel.ForeColor = userForeColor;
 
+            if (hasRingtonePath)
+                audioFileReader = new AudioFileReader(ringtonePath);
+
             // Init after config reading
             remainingSeconds = alertInterval;
             remainingSpareSeconds = maxSpareSeconds;
@@ -168,6 +173,7 @@ namespace Time2Rest
         private void AlertForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DefaultHook.StopHook();
+            audioFileReader.Dispose();
             waveOutDevice.Dispose();
         }
 
@@ -317,6 +323,7 @@ namespace Time2Rest
             // Ringtone
             if (hasRingtonePath)
             {
+                logger.Info("Playing ringtone");
                 audioFileReader = new AudioFileReader(ringtonePath);
                 waveOutDevice.Init(audioFileReader);
                 waveOutDevice.Play();
@@ -327,12 +334,18 @@ namespace Time2Rest
         {
             if (hasRingtonePath)
             {
+                logger.Info("Stopping ringtone");
                 if (waveOutDevice.PlaybackState == PlaybackState.Playing)
                 {
                     waveOutDevice.Stop();
-                    audioFileReader.Dispose();
                 }
             }
+        }
+
+        private void OnWaveOutDeviceStopped(object sender, EventArgs e)
+        {
+            logger.Info("Reseting audio reader");
+            audioFileReader.Seek(0, System.IO.SeekOrigin.Begin);
         }
 
         private void StartRest()
