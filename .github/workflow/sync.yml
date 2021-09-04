@@ -1,0 +1,14 @@
+name: Sync To Gitee
+on:
+  release:
+    type: [published]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wearerequired/git-mirror-action@master
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_PRIVATE_KEY }}
+        with:
+          source-repo: "git@github.com:SDchao/Time2Rest.git"
+          destination-repo: "git@gitee.com:SDchao/Time2Rest.git"
