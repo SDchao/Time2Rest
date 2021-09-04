@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,15 +14,19 @@ namespace Time2Rest.WinInteractors
     {
         public static bool CheckUnique()
         {
-            string name = Process.GetCurrentProcess().ProcessName;
+            string name = Process.GetCurrentProcess().MainModule.FileName;
             int id = Process.GetCurrentProcess().Id;
             Process[] prc = Process.GetProcesses();
             foreach (Process pr in prc)
             {
-                if ((name == pr.ProcessName) && (pr.Id != id))
+                try
                 {
-                    return true;
+                    if ((name == pr.MainModule.FileName) && (pr.Id != id))
+                    {
+                        return true;
+                    }
                 }
+                catch (Win32Exception) { }
             }
             return false;
         }
