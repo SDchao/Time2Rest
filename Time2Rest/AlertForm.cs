@@ -185,7 +185,8 @@ namespace Time2Rest
         private void AlertForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DefaultHook.StopHook();
-            audioFileReader.Dispose();
+            if (hasRingtonePath)
+                audioFileReader.Dispose();
             waveOutDevice.Dispose();
         }
 
