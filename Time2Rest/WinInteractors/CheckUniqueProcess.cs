@@ -19,7 +19,7 @@ namespace Time2Rest.WinInteractors
                         return true;
                     }
                 }
-                catch (Win32Exception) { }
+                catch { }
             }
             return false;
         }
