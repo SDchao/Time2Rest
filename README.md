@@ -4,6 +4,16 @@
 
 Please go to [English README](https://github.com/SDchao/Time2Rest/blob/main/README_en.md)
 
+## 运行需要
+
+Time2Rest **仅可在 Windows 操作系统上运行**
+
+Time2Rest 需要 .Net Framework 4.7.2 运行。此运行环境于 Windows 10 October 2018 Update 及之后版本自带。如果您没有运行环境，请在此处下载：
+
+[下载.Net Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
+
+您应在下载页面选择Runtime
+
 ## 软件功能
 
 Time2Rest 可以帮助您保护双眼！每当您使用电脑超过30分钟（可以自行设置），屏幕将会浮现出透明提示，告知您当前时间与使用电脑的时间。

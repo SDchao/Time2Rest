@@ -4,6 +4,18 @@
 
 请前往 [README](https://github.com/SDchao/Time2Rest/blob/main/README.md)
 
+## Runtime Requirement
+
+Time2Rest can **only run on Windows OS**
+
+This program needs .Net Framework 4.7.2 to run correctly. The runtime has been deployed on Windows 10 October 2018 Update and newer Windows system.
+
+If you have not installed, please click the link below to download.
+
+[Download .Net Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472)
+
+You should choose Runtime on this page.
+
 ## Software Function
 
 Time2Rest can help you protect your eyes! When you have kept using your computer for over 30 minutes (can be set), transparent reminder, which tells you current time and the time you using the computer, will show up in the screen.
