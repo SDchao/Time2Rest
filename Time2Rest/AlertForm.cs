@@ -64,9 +64,6 @@ namespace Time2Rest
 
         public AlertForm()
         {
-            // Logger
-            logger = LogManager.GetCurrentClassLogger();
-
             // Lang
             lang = LanguageManager.GetLangRes();
 
@@ -75,6 +72,9 @@ namespace Time2Rest
                 MessageBox.Show(lang.GetString("TIP_STARTED"));
                 Environment.Exit(0);
             }
+
+            // Logger
+            logger = LogManager.GetCurrentClassLogger();
 
             InitializeComponent();
             DefaultHook.OnOperation += OnUserOperation;
@@ -113,6 +113,8 @@ namespace Time2Rest
             // READ CONFIG
             UpdateConfig();
 
+            logger.Info("Alert Form Init Completed");
+
         }
 
         #region Config Reading
@@ -124,7 +126,6 @@ namespace Time2Rest
 
         private void UpdateConfig(T2rConfig config)
         {
-            logger.Debug("Applying config");
             alertInterval = config.alertInterval;
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
@@ -179,7 +180,10 @@ namespace Time2Rest
                 {
                     remainingSpareSeconds = maxSpareSeconds;
                     if (!CountdownTimer.Enabled)
+                    {
+                        logger.Info("User came back, enabling count down timer");
                         CountdownTimer.Enabled = true;
+                    }                 
                 }
             }
             else if (status == SHOWING)
@@ -192,7 +196,7 @@ namespace Time2Rest
                     if (showingTime < minimumRestTime)
                     {
                         // User didnt rest enough
-                        logger.Info("Inisting computer usage, alert later");
+                        logger.Info("Insisting computer usage, alert later");
                         remainingSeconds = alertAgainInterval;
 
                         // text modify
@@ -268,6 +272,12 @@ namespace Time2Rest
                 logger.Debug("Time remain: {0}", remainingSeconds);
                 logger.Debug("Time before stop the timer: {0}", remainingSpareSeconds);
                 logger.Debug("User operating time: {0}", userOperatingTime);
+
+                // Notify Icon Update
+                string userOperatingTimeStr = String.Format("({0}:{1:D2})", userOperatingTime / 60, userOperatingTime % 60);
+                NotifyIcon.Text = "Time2Rest " + userOperatingTimeStr;
+                NotifyMenu.Items[0].Text = lang.GetString("MENU_REST") + " " + userOperatingTimeStr;
+
                 if (remainingSeconds <= 0)
                 {
                     if (FullscreenDetector.IsForegroundFullScreen() && hideWhenFullScreen)
