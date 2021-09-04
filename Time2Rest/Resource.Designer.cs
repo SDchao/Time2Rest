@@ -119,5 +119,34 @@ namespace Time2Rest {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.0.
+        /// </summary>
+        internal static string VERSION {
+            get {
+                return ResourceManager.GetString("VERSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 初始版本
+        ///此消息为测试消息.
+        /// </summary>
+        internal static string VERSION_LOG {
+            get {
+                return ResourceManager.GetString("VERSION_LOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial Version
+        ///This is test msg..
+        /// </summary>
+        internal static string VERSION_LOG_EN {
+            get {
+                return ResourceManager.GetString("VERSION_LOG_EN", resourceCulture);
+            }
+        }
     }
 }

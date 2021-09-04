@@ -35,5 +35,10 @@ namespace Time2Rest.Languages
                 return new ResXResourceSet(defaultPath);
             }
         }
+
+        public static string GetCultureName()
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.Name;
+        }
     }
 }

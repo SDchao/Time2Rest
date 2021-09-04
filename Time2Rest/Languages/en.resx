@@ -210,7 +210,19 @@
   <data name="ST_TAB_VISUAL" xml:space="preserve">
     <value>Visual Settings</value>
   </data>
+  <data name="TIP" xml:space="preserve">
+    <value>Tip</value>
+  </data>
   <data name="TIP_STARTED" xml:space="preserve">
     <value>Time2Rest has minimized to tray icon</value>
+  </data>
+  <data name="TIP_UPDATE" xml:space="preserve">
+    <value>New Version Found!
+Local version: {0}
+Newest version: {1}
+
+{2}
+
+Would you like to go to download page?</value>
   </data>
 </root>

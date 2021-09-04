@@ -377,10 +377,10 @@ namespace Time2Rest
             {
                 audioFileReader.Seek(0, System.IO.SeekOrigin.Begin);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 logger.Error("Unable to reset audio reader");
-                logger.Error(e);
+                logger.Error(ex);
             }
         }
 
