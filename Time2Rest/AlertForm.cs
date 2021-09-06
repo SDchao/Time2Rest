@@ -66,6 +66,8 @@ namespace Time2Rest
 
         private AudioFileReader audioFileReader;
 
+        private bool manuallyRest;
+
         #endregion variables
 
         public AlertForm()
@@ -211,8 +213,17 @@ namespace Time2Rest
 
                 lock (countdownLock)
                 {
+                    if (manuallyRest && showingTime < minimumRestTime)
+                    {
+                        // User didnt rest enough
+                        logger.Info("Manually rest break, continue countdown");
+                        remainingSeconds -= showingTime;
+                        
+                        // text modify
+                        TipLabel.Text = String.Format(lang.GetString("REST_INCOMPLETE"), Math.Round(remainingSeconds / 60.0));
+                    }
                     // User operated after showing the alert
-                    if (showingTime < minimumRestTime)
+                    else if (showingTime < minimumRestTime)
                     {
                         // User didnt rest enough
                         logger.Info("Insisting computer usage, alert later");
@@ -231,6 +242,8 @@ namespace Time2Rest
 
                 status = FADE_OUT;
                 UpdateTimer.Enabled = true;
+
+                manuallyRest = false;
 
                 StopRingtone();
             }
@@ -462,6 +475,7 @@ namespace Time2Rest
                 if (e.Button == MouseButtons.Left)
                 {
                     logger.Info("User start to rest manually");
+                    manuallyRest = true;
                     StartRest();
                 }
             }
@@ -484,6 +498,7 @@ namespace Time2Rest
             {
                 // TODO
                 case 0:     // Rest now
+                    manuallyRest = true;
                     StartRest();
                     break;
 
