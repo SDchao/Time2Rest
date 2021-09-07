@@ -1,7 +1,7 @@
 name: Sync To Gitee
 on:
   release:
-    types: [created]
+    types: [released]
 jobs:
   sync:
     runs-on: ubuntu-latest
