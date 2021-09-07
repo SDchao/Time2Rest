@@ -121,7 +121,7 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.1.
+        ///   Looks up a localized string similar to 1.2.
         /// </summary>
         internal static string VERSION {
             get {
@@ -130,8 +130,7 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 初始版本
-        ///此消息为测试消息.
+        ///   Looks up a localized string similar to 手动休息中断后，不更改下次提醒时间.
         /// </summary>
         internal static string VERSION_LOG {
             get {
@@ -140,8 +139,7 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Initial Version
-        ///This is test msg..
+        ///   Looks up a localized string similar to Next reminding time does not change after &quot;Rest Now&quot; was interrupted.
         /// </summary>
         internal static string VERSION_LOG_EN {
             get {

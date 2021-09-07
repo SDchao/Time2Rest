@@ -137,14 +137,12 @@
     <value>Resources\PNG_SETTING.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VERSION" xml:space="preserve">
-    <value>1.1</value>
+    <value>1.2</value>
   </data>
   <data name="VERSION_LOG" xml:space="preserve">
-    <value>初始版本
-此消息为测试消息</value>
+    <value>手动休息中断后，不更改下次提醒时间</value>
   </data>
   <data name="VERSION_LOG_EN" xml:space="preserve">
-    <value>Initial Version
-This is test msg.</value>
+    <value>Next reminding time does not change after "Rest Now" was interrupted</value>
   </data>
 </root>
