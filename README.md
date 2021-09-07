@@ -4,6 +4,11 @@
 
 Please go to [English README](https://github.com/SDchao/Time2Rest/blob/main/README_en.md)
 
+## 下载
+请前往 Release 页面：[点我跳转] (https://github.com/SDchao/Time2Rest/releases/latest)
+
+如果你不需要源代码，请下载列表中的 **"Time2Rest_V\*\*\*.zip"**
+
 ## 运行需要
 
 Time2Rest **仅可在 Windows 操作系统上运行**

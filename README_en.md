@@ -4,6 +4,11 @@
 
 请前往 [README](https://github.com/SDchao/Time2Rest/blob/main/README.md)
 
+## Download
+Please goto Release Page: [CLICK ME](https://github.com/SDchao/Time2Rest/releases/latest)
+
+If you do not need the source code, please download **"Time2Rest_\*\*\*.zip"** in the list.
+
 ## Runtime Requirement
 
 Time2Rest can **only run on Windows OS**
