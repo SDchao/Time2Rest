@@ -218,7 +218,12 @@ namespace Time2Rest
                         // User didnt rest enough
                         logger.Info("Manually rest break, continue countdown");
                         remainingSeconds -= showingTime;
-                        
+
+                        if (remainingSeconds <= 0)
+                        {
+                            remainingSeconds = alertAgainInterval;
+                        }
+
                         // text modify
                         TipLabel.Text = String.Format(lang.GetString("REST_INCOMPLETE"), Math.Round(remainingSeconds / 60.0));
                     }
