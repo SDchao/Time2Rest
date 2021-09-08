@@ -68,7 +68,29 @@ namespace Time2Rest
 
         private bool manuallyRest;
 
+        // Focus
+        private IntPtr preForeHwnd;
+
         #endregion variables
+
+        #region DLL Import
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_LAYERED = 0x80000;
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int WS_EX_NOACTIVATE = 0x08000000;
+        #endregion
 
         public AlertForm()
         {
@@ -90,7 +112,10 @@ namespace Time2Rest
                 UpdateChecker.CheckUpdate();
             });
 
+            preForeHwnd = GetForegroundWindow();
+
             InitializeComponent();
+
             DefaultHook.OnOperation += OnUserOperation;
 
             // Menu Lang
@@ -281,7 +306,6 @@ namespace Time2Rest
                     status = HIDING;
                     UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
-                    this.Hide();
                 }
             }
         }
@@ -410,33 +434,23 @@ namespace Time2Rest
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
-            UpdateTimer.Enabled = true;
 
             // text modify
             TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
-            UpdateClock();
+            //UpdateClock();
+            UpdateTimer.Enabled = true;
+            Task.Run(() =>
+            {
 
-            PlayRingtone();
-
-            this.Show();
+                PlayRingtone();
+            });
         }
 
         #endregion Core Function
 
         // Mouse penetrate and no focus
 
-        #region Mouse passthrough
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
-        private const int GWL_EXSTYLE = -20;
-        private const int WS_EX_LAYERED = 0x80000;
-        private const int WS_EX_TRANSPARENT = 0x20;
-        private const int WS_EX_NOACTIVATE = 0x08000000;
+        #region Window Advanced Settings
 
         protected override void OnLoad(EventArgs e)
         {
@@ -447,10 +461,10 @@ namespace Time2Rest
 
         private void AlertForm_Shown(object sender, EventArgs e)
         {
-            this.Hide();
+            SetForegroundWindow(preForeHwnd);
         }
 
-        #endregion Mouse passthrough
+        #endregion Window Advanced Settings
 
         private void UpdateLayout()
         {
