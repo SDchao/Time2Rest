@@ -434,7 +434,7 @@ namespace Time2Rest
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
-
+            
             // text modify
             TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
             //UpdateClock();
@@ -444,6 +444,7 @@ namespace Time2Rest
 
                 PlayRingtone();
             });
+            SetForegroundWindow(this.Handle);
         }
 
         #endregion Core Function

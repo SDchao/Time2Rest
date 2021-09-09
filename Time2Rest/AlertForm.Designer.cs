@@ -109,6 +109,7 @@ namespace Time2Rest
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Time2Rest";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AlertForm_FormClosing);
             this.Load += new System.EventHandler(this.AlertForm_Load);
             this.Shown += new System.EventHandler(this.AlertForm_Shown);
