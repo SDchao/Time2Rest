@@ -145,6 +145,11 @@ namespace Time2Rest
             // TextBox_MinRest
             // 
             this.TextBox_MinRest.Location = new System.Drawing.Point(144, 61);
+            this.TextBox_MinRest.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.TextBox_MinRest.Name = "TextBox_MinRest";
             this.TextBox_MinRest.Size = new System.Drawing.Size(74, 23);
             this.TextBox_MinRest.TabIndex = 12;
@@ -152,6 +157,11 @@ namespace Time2Rest
             // TextBox_LaterInterval
             // 
             this.TextBox_LaterInterval.Location = new System.Drawing.Point(144, 32);
+            this.TextBox_LaterInterval.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.TextBox_LaterInterval.Name = "TextBox_LaterInterval";
             this.TextBox_LaterInterval.Size = new System.Drawing.Size(74, 23);
             this.TextBox_LaterInterval.TabIndex = 11;
@@ -237,6 +247,11 @@ namespace Time2Rest
             // TextBox_Interval
             // 
             this.TextBox_Interval.Location = new System.Drawing.Point(144, 3);
+            this.TextBox_Interval.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
             this.TextBox_Interval.Name = "TextBox_Interval";
             this.TextBox_Interval.Size = new System.Drawing.Size(74, 23);
             this.TextBox_Interval.TabIndex = 10;

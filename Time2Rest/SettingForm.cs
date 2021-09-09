@@ -48,6 +48,11 @@ namespace Time2Rest
             Button_Confirm.Text = lang.GetString("ST_BTN_CONFIRM");
             Button_Cancel.Text = lang.GetString("ST_BTN_CANCEL");
 
+            // Numeric Maximum
+            TextBox_Interval.Maximum = int.MaxValue;
+            TextBox_LaterInterval.Maximum = int.MaxValue;
+            TextBox_MinRest.Maximum = int.MaxValue;
+
             // Config loading
             var config = T2rConfigManager.ReadConfig();
             LoadConfig(config);
