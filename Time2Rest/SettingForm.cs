@@ -70,7 +70,6 @@ namespace Time2Rest
             TextBox_Img.Text = config.backGroundImgPath;
             TextBox_Opacity.Value = (int)Math.Round(config.maxOpacity * 100);
             CheckBox_Hide.Checked = config.hideWhenFullscreen;
-            Console.WriteLine(config.screenIndex);
             ComboBox_Screen.SelectedIndex = config.screenIndex;
 
             TextBox_Interval.Value = (config.alertInterval / 60);
