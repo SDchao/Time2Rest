@@ -82,7 +82,7 @@ namespace Time2Rest.Config
             }
             get
             {
-                if (_screenIndex > 0)
+                if (ValidateScreen(_screenIndex))
                     return _screenIndex;
                 else
                     return GetPrimaryScreenIndex();
@@ -148,7 +148,7 @@ namespace Time2Rest.Config
         public static bool ValidateScreen(int index)
         {
             var allScreen = Screen.AllScreens;
-            if (index < allScreen.Length)
+            if (index < allScreen.Length && index >= 0)
                 return true;
             return false;
         }
