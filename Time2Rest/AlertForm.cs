@@ -341,7 +341,7 @@ namespace Time2Rest
 
                 if (remainingSeconds <= 0)
                 {
-                    if (FullscreenDetector.IsForegroundFullScreen() && hideWhenFullScreen)
+                    if (FullscreenDetector.IsForegroundFullScreen(this.screen) && hideWhenFullScreen)
                     {
                         logger.Info("Fullscreen Application detected");
                         PlayRingtone();
