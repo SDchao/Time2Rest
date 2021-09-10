@@ -162,6 +162,9 @@
   <data name="ST_BTN_SELECT" xml:space="preserve">
     <value>选择...</value>
   </data>
+  <data name="ST_CB_BUILTIN" xml:space="preserve">
+    <value>内置显示器</value>
+  </data>
   <data name="ST_CB_HIDE_WHEN_FULLSCREEN" xml:space="preserve">
     <value>运行全屏应用时隐藏提醒</value>
   </data>
