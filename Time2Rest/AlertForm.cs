@@ -444,7 +444,7 @@ namespace Time2Rest
 
                 PlayRingtone();
             });
-            SetForegroundWindow(this.Handle);
+             //SetForegroundWindow(this.Handle);
         }
 
         #endregion Core Function
