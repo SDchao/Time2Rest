@@ -49,6 +49,8 @@ namespace Time2Rest
             this.TextBox_Opacity = new System.Windows.Forms.NumericUpDown();
             this.Label_Percentage = new System.Windows.Forms.Label();
             this.CheckBox_Hide = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Label_Screen = new System.Windows.Forms.Label();
             this.TableLayout_Visual = new System.Windows.Forms.TableLayoutPanel();
             this.Label_ForeColor = new System.Windows.Forms.Label();
             this.Label_BackColor = new System.Windows.Forms.Label();
@@ -68,6 +70,7 @@ namespace Time2Rest
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog_Ringtone = new System.Windows.Forms.OpenFileDialog();
             this.Button_Reset = new System.Windows.Forms.Button();
+            this.ComboBox_Screen = new System.Windows.Forms.ComboBox();
             this.TabPage_Timer.SuspendLayout();
             this.TableLayout_Timer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_MinRest)).BeginInit();
@@ -76,6 +79,7 @@ namespace Time2Rest
             this.TabPage_Visual.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).BeginInit();
+            this.flowLayoutPanel3.SuspendLayout();
             this.TableLayout_Visual.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Fore)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Back)).BeginInit();
@@ -259,7 +263,7 @@ namespace Time2Rest
             // TabPage_Visual
             // 
             this.TabPage_Visual.Controls.Add(this.flowLayoutPanel1);
-            this.TabPage_Visual.Controls.Add(this.CheckBox_Hide);
+            this.TabPage_Visual.Controls.Add(this.flowLayoutPanel3);
             this.TabPage_Visual.Controls.Add(this.TableLayout_Visual);
             this.TabPage_Visual.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Visual.Name = "TabPage_Visual";
@@ -274,7 +278,7 @@ namespace Time2Rest
             this.flowLayoutPanel1.Controls.Add(this.Label_MaxOpacity);
             this.flowLayoutPanel1.Controls.Add(this.TextBox_Opacity);
             this.flowLayoutPanel1.Controls.Add(this.Label_Percentage);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 93);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 88);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(451, 33);
             this.flowLayoutPanel1.TabIndex = 2;
@@ -315,12 +319,35 @@ namespace Time2Rest
             // CheckBox_Hide
             // 
             this.CheckBox_Hide.AutoSize = true;
-            this.CheckBox_Hide.Location = new System.Drawing.Point(12, 163);
+            this.CheckBox_Hide.Location = new System.Drawing.Point(206, 3);
             this.CheckBox_Hide.Name = "CheckBox_Hide";
-            this.CheckBox_Hide.Size = new System.Drawing.Size(61, 21);
+            this.CheckBox_Hide.Size = new System.Drawing.Size(63, 21);
             this.CheckBox_Hide.TabIndex = 1;
-            this.CheckBox_Hide.Text = "hide...";
+            this.CheckBox_Hide.Text = "Hide...";
             this.CheckBox_Hide.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.Label_Screen);
+            this.flowLayoutPanel3.Controls.Add(this.ComboBox_Screen);
+            this.flowLayoutPanel3.Controls.Add(this.CheckBox_Hide);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(5, 120);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(452, 67);
+            this.flowLayoutPanel3.TabIndex = 12;
+            // 
+            // Label_Screen
+            // 
+            this.Label_Screen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Screen.AutoSize = true;
+            this.Label_Screen.Location = new System.Drawing.Point(3, 0);
+            this.Label_Screen.Name = "Label_Screen";
+            this.Label_Screen.Size = new System.Drawing.Size(54, 31);
+            this.Label_Screen.TabIndex = 7;
+            this.Label_Screen.Text = "Screen: ";
+            this.Label_Screen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TableLayout_Visual
             // 
@@ -531,6 +558,19 @@ namespace Time2Rest
             this.Button_Reset.UseVisualStyleBackColor = true;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
+            // ComboBox_Screen
+            // 
+            this.ComboBox_Screen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_Screen.FormattingEnabled = true;
+            this.ComboBox_Screen.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.ComboBox_Screen.Location = new System.Drawing.Point(63, 3);
+            this.ComboBox_Screen.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
+            this.ComboBox_Screen.Name = "ComboBox_Screen";
+            this.ComboBox_Screen.Size = new System.Drawing.Size(120, 25);
+            this.ComboBox_Screen.TabIndex = 8;
+            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -556,10 +596,11 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_LaterInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Interval)).EndInit();
             this.TabPage_Visual.ResumeLayout(false);
-            this.TabPage_Visual.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).EndInit();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.TableLayout_Visual.ResumeLayout(false);
             this.TableLayout_Visual.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Fore)).EndInit();
@@ -612,5 +653,8 @@ namespace Time2Rest
         private System.Windows.Forms.Button Button_SelectSound;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button Button_Reset;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.Label Label_Screen;
+        private System.Windows.Forms.ComboBox ComboBox_Screen;
     }
 }
