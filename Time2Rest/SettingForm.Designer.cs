@@ -48,9 +48,10 @@ namespace Time2Rest
             this.Label_MaxOpacity = new System.Windows.Forms.Label();
             this.TextBox_Opacity = new System.Windows.Forms.NumericUpDown();
             this.Label_Percentage = new System.Windows.Forms.Label();
-            this.CheckBox_Hide = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.Label_Screen = new System.Windows.Forms.Label();
+            this.ComboBox_Screen = new System.Windows.Forms.ComboBox();
+            this.CheckBox_Hide = new System.Windows.Forms.CheckBox();
             this.TableLayout_Visual = new System.Windows.Forms.TableLayoutPanel();
             this.Label_ForeColor = new System.Windows.Forms.Label();
             this.Label_BackColor = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@ namespace Time2Rest
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog_Ringtone = new System.Windows.Forms.OpenFileDialog();
             this.Button_Reset = new System.Windows.Forms.Button();
-            this.ComboBox_Screen = new System.Windows.Forms.ComboBox();
             this.TabPage_Timer.SuspendLayout();
             this.TableLayout_Timer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_MinRest)).BeginInit();
@@ -264,6 +264,7 @@ namespace Time2Rest
             // 
             this.TabPage_Visual.Controls.Add(this.flowLayoutPanel1);
             this.TabPage_Visual.Controls.Add(this.flowLayoutPanel3);
+            this.TabPage_Visual.Controls.Add(this.CheckBox_Hide);
             this.TabPage_Visual.Controls.Add(this.TableLayout_Visual);
             this.TabPage_Visual.Location = new System.Drawing.Point(4, 26);
             this.TabPage_Visual.Name = "TabPage_Visual";
@@ -316,24 +317,13 @@ namespace Time2Rest
             this.Label_Percentage.Text = "percentage";
             this.Label_Percentage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // CheckBox_Hide
-            // 
-            this.CheckBox_Hide.AutoSize = true;
-            this.CheckBox_Hide.Location = new System.Drawing.Point(206, 3);
-            this.CheckBox_Hide.Name = "CheckBox_Hide";
-            this.CheckBox_Hide.Size = new System.Drawing.Size(63, 21);
-            this.CheckBox_Hide.TabIndex = 1;
-            this.CheckBox_Hide.Text = "Hide...";
-            this.CheckBox_Hide.UseVisualStyleBackColor = true;
-            // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.Label_Screen);
             this.flowLayoutPanel3.Controls.Add(this.ComboBox_Screen);
-            this.flowLayoutPanel3.Controls.Add(this.CheckBox_Hide);
             this.flowLayoutPanel3.Location = new System.Drawing.Point(5, 120);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(452, 67);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(452, 33);
             this.flowLayoutPanel3.TabIndex = 12;
             // 
             // Label_Screen
@@ -348,6 +338,25 @@ namespace Time2Rest
             this.Label_Screen.TabIndex = 7;
             this.Label_Screen.Text = "Screen: ";
             this.Label_Screen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ComboBox_Screen
+            // 
+            this.ComboBox_Screen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_Screen.FormattingEnabled = true;
+            this.ComboBox_Screen.Location = new System.Drawing.Point(63, 3);
+            this.ComboBox_Screen.Name = "ComboBox_Screen";
+            this.ComboBox_Screen.Size = new System.Drawing.Size(306, 25);
+            this.ComboBox_Screen.TabIndex = 8;
+            // 
+            // CheckBox_Hide
+            // 
+            this.CheckBox_Hide.AutoSize = true;
+            this.CheckBox_Hide.Location = new System.Drawing.Point(6, 159);
+            this.CheckBox_Hide.Name = "CheckBox_Hide";
+            this.CheckBox_Hide.Size = new System.Drawing.Size(63, 21);
+            this.CheckBox_Hide.TabIndex = 1;
+            this.CheckBox_Hide.Text = "Hide...";
+            this.CheckBox_Hide.UseVisualStyleBackColor = true;
             // 
             // TableLayout_Visual
             // 
@@ -558,19 +567,6 @@ namespace Time2Rest
             this.Button_Reset.UseVisualStyleBackColor = true;
             this.Button_Reset.Click += new System.EventHandler(this.Button_Reset_Click);
             // 
-            // ComboBox_Screen
-            // 
-            this.ComboBox_Screen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_Screen.FormattingEnabled = true;
-            this.ComboBox_Screen.Items.AddRange(new object[] {
-            "1",
-            "2"});
-            this.ComboBox_Screen.Location = new System.Drawing.Point(63, 3);
-            this.ComboBox_Screen.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
-            this.ComboBox_Screen.Name = "ComboBox_Screen";
-            this.ComboBox_Screen.Size = new System.Drawing.Size(120, 25);
-            this.ComboBox_Screen.TabIndex = 8;
-            // 
             // SettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -596,6 +592,7 @@ namespace Time2Rest
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_LaterInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Interval)).EndInit();
             this.TabPage_Visual.ResumeLayout(false);
+            this.TabPage_Visual.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TextBox_Opacity)).EndInit();

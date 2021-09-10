@@ -27,6 +27,8 @@ namespace Time2Rest
             Label_MaxOpacity.Text = lang.GetString("ST_LB_MAX_OPACITY");
             Label_Percentage.Text = lang.GetString("ST_LB_PERCENTAGE");
             CheckBox_Hide.Text = lang.GetString("ST_CB_HIDE_WHEN_FULLSCREEN");
+            Label_Screen.Text = lang.GetString("ST_LB_SCREEN");
+            LoadScreenList(lang);
 
             // Timer tab
             TabPage_Timer.Text = lang.GetString("ST_TAB_TIMER");
@@ -68,6 +70,8 @@ namespace Time2Rest
             TextBox_Img.Text = config.backGroundImgPath;
             TextBox_Opacity.Value = (int)Math.Round(config.maxOpacity * 100);
             CheckBox_Hide.Checked = config.hideWhenFullscreen;
+            Console.WriteLine(config.screenIndex);
+            ComboBox_Screen.SelectedIndex = config.screenIndex;
 
             TextBox_Interval.Value = (config.alertInterval / 60);
             TextBox_LaterInterval.Value = (config.alertAgainInterval / 60);
@@ -75,6 +79,21 @@ namespace Time2Rest
 
             CheckBox_StartUp.Checked = config.startup;
             TextBox_Sound.Text = config.ringtonePath;
+        }
+
+        private void LoadScreenList(System.Resources.ResXResourceSet lang)
+        {
+            ComboBox_Screen.Items.Clear();
+            int i = 0;
+            foreach (var display in WindowsDisplayAPI.DisplayConfig.PathDisplayTarget.GetDisplayTargets())
+            {
+                var name = display.FriendlyName;
+                if (!String.IsNullOrEmpty(name))
+                    ComboBox_Screen.Items.Add($"{i}: {name}");
+                else
+                    ComboBox_Screen.Items.Add($"{i}: {lang.GetString("ST_CB_BUILTIN")}");
+                i += 1;
+            }
         }
 
         #region click events
@@ -94,6 +113,7 @@ namespace Time2Rest
             newConfig.backGroundImgPath = TextBox_Img.Text;
             newConfig.maxOpacity = (double)(TextBox_Opacity.Value / 100);
             newConfig.hideWhenFullscreen = CheckBox_Hide.Checked;
+            newConfig.screenIndex = ComboBox_Screen.SelectedIndex;
             newConfig.alertInterval = (int)TextBox_Interval.Value * 60;
             newConfig.alertAgainInterval = (int)TextBox_LaterInterval.Value * 60;
             newConfig.minimumRestTime = (int)TextBox_MinRest.Value;
