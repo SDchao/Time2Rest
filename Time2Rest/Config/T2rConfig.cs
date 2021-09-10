@@ -82,7 +82,10 @@ namespace Time2Rest.Config
             }
             get
             {
-                return _screenIndex;
+                if (_screenIndex > 0)
+                    return _screenIndex;
+                else
+                    return GetPrimaryScreenIndex();
             }
         }
 
@@ -148,6 +151,19 @@ namespace Time2Rest.Config
             if (index < allScreen.Length)
                 return true;
             return false;
+        }
+
+        public static int GetPrimaryScreenIndex()
+        {
+            var primary = Screen.PrimaryScreen;
+            int i = 0;
+            foreach (var screen in Screen.AllScreens)
+            {
+                if (screen == primary)
+                    return i;
+                i += 1;
+            }
+            return -1;
         }
     }
 }
