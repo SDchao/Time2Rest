@@ -31,6 +31,7 @@ namespace Time2Rest
 
         // Display
         private int status = HIDING;
+        private Screen screen;
 
         // Time counter
         private int remainingSeconds = -1;
@@ -130,27 +131,9 @@ namespace Time2Rest
             this.TopMost = true;
             this.Opacity = 0.0;
 
-            this.Left = 0;
-            this.Top = 0;
-
-            this.Width = Screen.PrimaryScreen.Bounds.Width;
-            this.Height = Screen.PrimaryScreen.Bounds.Height;
-
             this.UpdateTimer.Enabled = false;
 
             this.waveOutDevice.PlaybackStopped += OnWaveOutDeviceStopped;
-
-            // Components Adjust
-            float clockHeight = this.Height * 0.2f;
-            ClockLabel.Font = new Font(ClockLabel.Font.Name, clockHeight * 0.75f);
-
-            float tipHeight = clockHeight * 0.15f;
-            TipLabel.Font = new Font(TipLabel.Font.Name, tipHeight * 0.75f);
-
-            UpdateLayout();
-
-            // READ CONFIG
-            UpdateConfig();
 
             logger.Info("Alert Form Init Completed");
         }
@@ -169,6 +152,7 @@ namespace Time2Rest
             minimumRestTime = config.minimumRestTime;
             alertAgainInterval = config.alertAgainInterval;
             hideWhenFullScreen = config.hideWhenFullscreen;
+            this.screen = config.screen;
             hasRingtonePath = !String.IsNullOrEmpty(config.ringtonePath);
             ringtonePath = config.ringtonePath;
 
@@ -193,21 +177,37 @@ namespace Time2Rest
             remainingSpareSeconds = maxSpareSeconds;
             CountdownTimer.Enabled = true;
 
+            // Modify Form Size
+            this.Left = screen.Bounds.Left;
+            this.Top = screen.Bounds.Top;
+
+            this.Width = screen.Bounds.Width;
+            this.Height = screen.Bounds.Height;
+
+            // Components Adjust
+            float clockHeight = this.Height * 0.2f;
+            ClockLabel.Font = new Font(ClockLabel.Font.Name, clockHeight * 0.75f);
+
+            float tipHeight = clockHeight * 0.15f;
+            TipLabel.Font = new Font(TipLabel.Font.Name, tipHeight * 0.75f);
+
             // Startup
             StartupManager.SetStartup(config.startup);
 
             // Final step
             logger.Info("Config applied");
         }
+        private void AlertForm_Load(object sender, EventArgs e)
+        {
+            UpdateConfig();
+            UpdateLayout();
+            DefaultHook.StartHook();
+        }
 
         #endregion Config Reading
 
         #region Core Function
 
-        private void AlertForm_Load(object sender, EventArgs e)
-        {
-            DefaultHook.StartHook();
-        }
 
         private void AlertForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -434,7 +434,7 @@ namespace Time2Rest
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
-            
+
             // text modify
             TipLabel.Text = String.Format(lang.GetString("REST_TIP"), userOperatingTime / 60);
             //UpdateClock();
