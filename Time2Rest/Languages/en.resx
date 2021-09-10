@@ -195,6 +195,9 @@
   <data name="ST_LB_REMIND_LATER" xml:space="preserve">
     <value>Remind Later Interval: </value>
   </data>
+  <data name="ST_LB_SCREEN" xml:space="preserve">
+    <value>Screen: </value>
+  </data>
   <data name="ST_LB_SEC" xml:space="preserve">
     <value>seconds</value>
   </data>

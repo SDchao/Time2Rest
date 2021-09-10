@@ -195,6 +195,9 @@
   <data name="ST_LB_REMIND_LATER" xml:space="preserve">
     <value>稍后提醒间隔：</value>
   </data>
+  <data name="ST_LB_SCREEN" xml:space="preserve">
+    <value>显示器：</value>
+  </data>
   <data name="ST_LB_SEC" xml:space="preserve">
     <value>秒</value>
   </data>
