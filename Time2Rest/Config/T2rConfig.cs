@@ -1,5 +1,6 @@
 ﻿using NAudio.Wave;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Time2Rest.Config
 {
@@ -67,6 +68,39 @@ namespace Time2Rest.Config
 
         public bool startup = true;
 
+        // Screen Config
+        private int _screenIndex = -1;
+
+        public int screenIndex
+        {
+            set
+            {
+                if (ValidateScreen(value))
+                    _screenIndex = value;
+                else
+                    _screenIndex = -1;
+            }
+            get
+            {
+                return _screenIndex;
+            }
+        }
+
+        public Screen screen
+        {
+            get
+            {
+                if (_screenIndex == -1)
+                {
+                    return Screen.PrimaryScreen;
+                }
+                else
+                {
+                    return Screen.AllScreens[_screenIndex];
+                }
+            }
+        }
+
         public Color GetBackColor()
         {
             return _backColor;
@@ -106,6 +140,14 @@ namespace Time2Rest.Config
             {
                 return false;
             }
+        }
+
+        public static bool ValidateScreen(int index)
+        {
+            var allScreen = Screen.AllScreens;
+            if (index < allScreen.Length)
+                return true;
+            return false;
         }
     }
 }
