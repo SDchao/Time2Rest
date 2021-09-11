@@ -154,9 +154,19 @@ namespace Time2Rest
             0,
             0,
             0});
+            this.TextBox_MinRest.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TextBox_MinRest.Name = "TextBox_MinRest";
             this.TextBox_MinRest.Size = new System.Drawing.Size(74, 23);
             this.TextBox_MinRest.TabIndex = 12;
+            this.TextBox_MinRest.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // TextBox_LaterInterval
             // 
@@ -166,9 +176,19 @@ namespace Time2Rest
             0,
             0,
             0});
+            this.TextBox_LaterInterval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TextBox_LaterInterval.Name = "TextBox_LaterInterval";
             this.TextBox_LaterInterval.Size = new System.Drawing.Size(74, 23);
             this.TextBox_LaterInterval.TabIndex = 11;
+            this.TextBox_LaterInterval.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Label_Sec
             // 
@@ -256,9 +276,19 @@ namespace Time2Rest
             0,
             0,
             0});
+            this.TextBox_Interval.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.TextBox_Interval.Name = "TextBox_Interval";
             this.TextBox_Interval.Size = new System.Drawing.Size(74, 23);
             this.TextBox_Interval.TabIndex = 10;
+            this.TextBox_Interval.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // TabPage_Visual
             // 
@@ -279,7 +309,7 @@ namespace Time2Rest
             this.flowLayoutPanel1.Controls.Add(this.Label_MaxOpacity);
             this.flowLayoutPanel1.Controls.Add(this.TextBox_Opacity);
             this.flowLayoutPanel1.Controls.Add(this.Label_Percentage);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 88);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 88);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(451, 33);
             this.flowLayoutPanel1.TabIndex = 2;
