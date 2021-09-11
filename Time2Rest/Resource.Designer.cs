@@ -121,7 +121,7 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.3.
+        ///   Looks up a localized string similar to 1.4.
         /// </summary>
         internal static string VERSION {
             get {
@@ -130,8 +130,10 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to · 修复显示提醒窗口的瞬间卡顿
-        ///· 修复启动时获取窗口焦点.
+        ///   Looks up a localized string similar to · 添加选择显示器设置
+        ///· 修复无法设置休息时长超过100秒
+        ///· 修复部分情况下提醒窗口不显示
+        ///· 修复启动时窗口位置异常.
         /// </summary>
         internal static string VERSION_LOG {
             get {
@@ -140,8 +142,10 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to · Fix significant system lag when the remind form shows 
-        ///· Fix remind form get focused when programme starts.
+        ///   Looks up a localized string similar to · Add settings for selecting monitor
+        ///· Fix cannot set shortest rest time over 100 secs
+        ///· Fix reminder form do not show up in some cases
+        ///· Fix wrong window position after initialize.
         /// </summary>
         internal static string VERSION_LOG_EN {
             get {
