@@ -294,6 +294,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="WinInteractors\FullscreenDetector.cs" />
+    <Compile Include="WinInteractors\ScreenshotChecker.cs" />
     <Compile Include="WinInteractors\StartupManager.cs" />
     <EmbeddedResource Include="AlertForm.resx">
       <DependentUpon>AlertForm.cs</DependentUpon>

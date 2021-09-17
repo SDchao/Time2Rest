@@ -72,6 +72,9 @@ namespace Time2Rest
         // Focus
         private IntPtr preForeHwnd;
 
+        // Screenshot Check
+        ScreenshotChecker sc = new ScreenshotChecker();
+
         #endregion variables
 
         #region DLL Import
@@ -118,6 +121,7 @@ namespace Time2Rest
             InitializeComponent();
 
             DefaultHook.OnOperation += OnUserOperation;
+            sc.onChanged += OnUserOperation;
 
             // Menu Lang
             NotifyMenu.Items.Add(lang.GetString("MENU_REST"), Resource.PNG_REST);
@@ -128,7 +132,6 @@ namespace Time2Rest
             NotifyMenu.ItemClicked += NotifyMenu_ItemClicked;
 
             // Init
-            this.TopMost = true;
             this.Opacity = 0.0;
 
             this.UpdateTimer.Enabled = false;
@@ -202,6 +205,7 @@ namespace Time2Rest
             UpdateConfig();
             UpdateLayout();
             DefaultHook.StartHook();
+            sc.Start();
         }
 
         #endregion Config Reading
@@ -431,6 +435,8 @@ namespace Time2Rest
             if (status != HIDING)
                 return;
 
+            this.TopMost = false;
+            this.TopMost = true;
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
