@@ -219,6 +219,7 @@ namespace Time2Rest
             if (hasRingtonePath)
                 audioFileReader.Dispose();
             waveOutDevice.Dispose();
+            sc.Stop();
         }
 
         private void OnUserOperation()
@@ -233,6 +234,7 @@ namespace Time2Rest
                     {
                         logger.Info("User came back, enabling count down timer");
                         CountdownTimer.Enabled = true;
+                        sc.Start();
                     }
                 }
             }
@@ -280,6 +282,7 @@ namespace Time2Rest
                 manuallyRest = false;
 
                 StopRingtone();
+                sc.Start();
             }
         }
 
@@ -332,6 +335,7 @@ namespace Time2Rest
                     remainingSeconds = alertInterval;
                     userOperatingTime = 0;
                     CountdownTimer.Enabled = false;
+                    sc.Stop();
                 }
 
                 logger.Debug("Time remain: {0}", remainingSeconds);
@@ -434,6 +438,8 @@ namespace Time2Rest
         {
             if (status != HIDING)
                 return;
+
+            sc.Stop();
 
             this.TopMost = false;
             this.TopMost = true;
