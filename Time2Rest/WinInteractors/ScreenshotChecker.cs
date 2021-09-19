@@ -43,33 +43,49 @@ namespace Time2Rest.WinInteractors
 
         public void Start()
         {
+            logger.Info("Starting Screenshot Checker Task");
+            stop = false;
             Task.Run(() =>
             {
-                while (true)
+                while (!stop)
                 {
-                    if (stop)
-                        return;
-
+                    Thread.Sleep(CheckInterval * 1000);
                     IntPtr nowHwnd = GetForegroundWindow();
+
+                    if (FullscreenDetector.IsDesktop(nowHwnd))
+                        continue;
+
+                    Bitmap rawImg = GetScreenshot(nowHwnd);
+                    Bitmap nowImg = null;
+                    if (rawImg != null)
+                        nowImg = new Bitmap(rawImg, new Size(rawImg.Size.Width / 10, rawImg.Size.Height / 10));
+                    rawImg?.Dispose();
                     if (nowHwnd != lastHwnd)
                     {
-                        logger.Info("Foreground changed, Invoking");
+                        if (lastHwnd != IntPtr.Zero)
+                        {
+                            if (stop)
+                                return;
+                            logger.Info("Foreground changed, Invoking");
+                            onChanged?.Invoke();
+                        }
+
                         lastHwnd = nowHwnd;
-                        onChanged?.Invoke();
                     }
                     else
                     {
-                        Bitmap nowImg = GetScreenshot(nowHwnd);
                         logger.Debug("Checking screenshot");
-                        if (!CompareMemCmp(nowImg, lastImg))
+                        if (!CompareColor(nowImg, lastImg))
                         {
+                            if (stop)
+                                return;
                             logger.Info("Foreground Screenshot changed, Invoking");
                             onChanged?.Invoke();
                         }
-                        lastImg?.Dispose();
-                        lastImg = nowImg;
+
                     }
-                    Thread.Sleep(CheckInterval * 1000);
+                    lastImg?.Dispose();
+                    lastImg = nowImg;
                 }
             });
         }
@@ -82,19 +98,52 @@ namespace Time2Rest.WinInteractors
 
         private Bitmap GetScreenshot(IntPtr hwnd)
         {
-            RECT rect = new RECT();
-            var result = GetWindowRect(hwnd, ref rect);
-            if (!result)
-                return null;
-
-            Rectangle bounds = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
-
-            Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
-            using (Graphics g = Graphics.FromImage(bitmap))
+            try
             {
-                g.CopyFromScreen(bounds.Left, bounds.Top, 0, 0, bounds.Size);
+                RECT rect = new RECT();
+                var result = GetWindowRect(hwnd, ref rect);
+                if (!result)
+                    throw new Exception();
+
+                Rectangle bounds = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
+
+                Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(bounds.Left, bounds.Top, 0, 0, bounds.Size);
+                }
+                return bitmap;
             }
-            return bitmap;
+            catch
+            {
+                logger.Warn("Unable to screenshot");
+                return null;
+            }
+        }
+
+        private int Grayscale(Color c)
+        {
+            return (int)(0.3 * c.R + 0.59 * c.G + 0.11 * c.B);
+        }
+
+        private bool CompareColor(Bitmap b1, Bitmap b2)
+        {
+            if ((b1 == null) != (b2 == null)) return false;
+            if (b1.Size != b2.Size) return false;
+
+            for (int j = 0; j < b1.Height; j++)
+            {
+                for (int i = 0; i < b1.Width; i++)
+                {
+                    int b1B = Grayscale(b1.GetPixel(i, j));
+                    int b2B = Grayscale(b2.GetPixel(i, j));
+                    int diff = Math.Abs(b1B - b2B);
+
+                    if (diff > 120)
+                        return false;
+                }
+            }
+            return true;
         }
 
         private bool CompareMemCmp(Bitmap b1, Bitmap b2)
