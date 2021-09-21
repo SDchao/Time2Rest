@@ -137,18 +137,18 @@
     <value>Resources\PNG_SETTING.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VERSION" xml:space="preserve">
-    <value>1.4</value>
+    <value>1.5</value>
   </data>
   <data name="VERSION_LOG" xml:space="preserve">
-    <value>· 添加选择显示器设置
-· 修复无法设置休息时长超过100秒
-· 修复部分情况下提醒窗口不显示
-· 修复启动时窗口位置异常</value>
+    <value>· 添加截屏检测，针对手柄操作、看视频等行为
+· 修复桌面被检测为全屏应用
+· 修复窗口置顶失效
+· 修复启动缓慢</value>
   </data>
   <data name="VERSION_LOG_EN" xml:space="preserve">
-    <value>· Add settings for selecting monitor
-· Fix cannot set shortest rest time over 100 secs
-· Fix reminder form do not show up in some cases
-· Fix wrong window position after initialize</value>
+    <value>· Add screenshot check, aim at controller operating, video watching, etc.
+· Fix desktop is detected as fullscreen application
+· Fix topmost window cease to be effective
+· Fix slow startup</value>
   </data>
 </root>

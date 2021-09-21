@@ -31,7 +31,7 @@ When the reminder shows, you can choose to rest at least 20 seconds (can be set 
 
 If you dismiss the reminder, it will remind you again 1 minute later (also can be set)
 
-You can rest on your own through the menu to reset the 30 minute countdown. Leaving mouse and keyboard for 5 minutes can achieve that too.
+You can rest on your own through the menu to reset the 30 minute countdown. Leaving your computer for 5 minutes can achieve that too.
 
 If fullscreen application is running, the reminder will not show up. Of course, it can be adjusted in settings! No problem!
 
@@ -48,16 +48,19 @@ You can choose the text color, background color. Single color is too dull? All r
 
 ## How it works
 
-Time2Rest will monitor your keyboard and mouse to judge if you are using your computer.
+Time2Rest will monitor your keyboard, mouse and the foreground window's screenshot to determine if you are using your computer.
 
-Relax! Time2Rest **WILL NOT** record or upload your keyboard history and mouse history! You can check that part of source code anytime:
+Relax! Time2Rest **WILL NOT** record or upload and data (including but not limited to your keyboard history, mouse history and screenshots)! You can check that part of source code anytime:
 
 * [DefaultHook.cs](https://github.com/SDchao/Time2Rest/blob/main/Time2Rest/WinInteractors/DefaultHook.cs)
-* [AlerForm.cs](https://github.com/SDchao/Time2Rest/blob/main/Time2Rest/AlertForm.cs#L153-L192) 153行
+* [AlerForm.cs](https://github.com/SDchao/Time2Rest/blob/main/Time2Rest/AlertForm.cs#L153-L192) Line 153
+* [ScreenshotChecker.cs](https://github.com/SDchao/Time2Rest/blob/main/Time2Rest/WinInteractors/ScreenshotChecker.cs)
 
 ## About Me
 
 Sorry but if you can understand Chinese, there is a video for instructions:
+
+[Video Link](https://www.bilibili.com/video/BV1rq4y1T7cx)
 
 Please follow me on Github if you like!
 

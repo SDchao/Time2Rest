@@ -121,7 +121,7 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.4.
+        ///   Looks up a localized string similar to 1.5.
         /// </summary>
         internal static string VERSION {
             get {
@@ -130,10 +130,10 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to · 添加选择显示器设置
-        ///· 修复无法设置休息时长超过100秒
-        ///· 修复部分情况下提醒窗口不显示
-        ///· 修复启动时窗口位置异常.
+        ///   Looks up a localized string similar to · 添加截屏检测，针对手柄操作、看视频等行为
+        ///· 修复桌面被检测为全屏应用
+        ///· 修复窗口置顶失效
+        ///· 修复启动缓慢.
         /// </summary>
         internal static string VERSION_LOG {
             get {
@@ -142,10 +142,10 @@ namespace Time2Rest {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to · Add settings for selecting monitor
-        ///· Fix cannot set shortest rest time over 100 secs
-        ///· Fix reminder form do not show up in some cases
-        ///· Fix wrong window position after initialize.
+        ///   Looks up a localized string similar to · Add screenshot check, aim at controller operating, video watching, etc.
+        ///· Fix desktop is detected as fullscreen application
+        ///· Fix topmost window cease to be effective
+        ///· Fix slow startup.
         /// </summary>
         internal static string VERSION_LOG_EN {
             get {
