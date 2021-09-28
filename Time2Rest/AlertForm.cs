@@ -168,6 +168,8 @@ namespace Time2Rest
             this.BackColor = userBackColor;
             if (!String.IsNullOrEmpty(backGroundImgPath))
                 this.BackgroundImage = Image.FromFile(backGroundImgPath);
+            else if (backGroundImgPath == "")
+                this.BackgroundImage = null;
 
             ClockLabel.ForeColor = userForeColor;
             TipLabel.ForeColor = userForeColor;
