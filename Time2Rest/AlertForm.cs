@@ -188,6 +188,8 @@ namespace Time2Rest
 
             this.Width = screen.Bounds.Width;
             this.Height = screen.Bounds.Height;
+            
+            this.TopMost = false;
 
             // Components Adjust
             float clockHeight = this.Height * 0.2f;
@@ -226,6 +228,10 @@ namespace Time2Rest
 
         private void OnUserOperation()
         {
+            if (status != HIDING)
+            {
+                this.TopMost = true;
+            }
             if (status == HIDING)
             {
                 // User came back or just using the computer
@@ -280,8 +286,9 @@ namespace Time2Rest
 
                 status = FADE_OUT;
                 UpdateTimer.Enabled = true;
-
                 manuallyRest = false;
+                
+                this.TopMost = false;
 
                 StopRingtone();
                 sc.Start();
@@ -443,8 +450,8 @@ namespace Time2Rest
 
             sc.Stop();
 
-            this.TopMost = false;
-            this.TopMost = true;
+            // this.TopMost = false;
+            // this.TopMost = true;
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
