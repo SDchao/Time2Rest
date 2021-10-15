@@ -32,6 +32,7 @@ namespace Time2Rest
         // Display
         private int status = HIDING;
         private Screen screen;
+        private int scWidth = 0;
 
         // Time counter
         private int remainingSeconds = -1;
@@ -186,7 +187,9 @@ namespace Time2Rest
             this.Left = screen.Bounds.Left;
             this.Top = screen.Bounds.Top;
 
-            this.Width = screen.Bounds.Width;
+            // this.Width = screen.Bounds.Width;
+            scWidth = screen.Bounds.Width;
+            this.Width = 0;
             this.Height = screen.Bounds.Height;
 
             // Components Adjust
@@ -208,6 +211,7 @@ namespace Time2Rest
             UpdateLayout();
             DefaultHook.StartHook();
             sc.Start();
+            this.TopMost = false;
         }
 
         #endregion Config Reading
@@ -226,6 +230,11 @@ namespace Time2Rest
 
         private void OnUserOperation()
         {
+            if (status != HIDING)
+            {
+                this.TopMost = true; // 在StartRest()中不生效
+                this.Width = scWidth;
+            }
             if (status == HIDING)
             {
                 // User came back or just using the computer
@@ -282,6 +291,7 @@ namespace Time2Rest
                 UpdateTimer.Enabled = true;
 
                 manuallyRest = false;
+                this.TopMost = false;
 
                 StopRingtone();
                 sc.Start();
@@ -315,6 +325,7 @@ namespace Time2Rest
                     status = HIDING;
                     UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
+                    this.Width = 0;
                 }
             }
         }
