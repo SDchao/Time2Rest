@@ -188,8 +188,6 @@ namespace Time2Rest
 
             this.Width = screen.Bounds.Width;
             this.Height = screen.Bounds.Height;
-            
-            this.TopMost = false;
 
             // Components Adjust
             float clockHeight = this.Height * 0.2f;
@@ -207,6 +205,7 @@ namespace Time2Rest
         private void AlertForm_Load(object sender, EventArgs e)
         {
             UpdateConfig();
+            this.TopMost = false;
             UpdateLayout();
             DefaultHook.StartHook();
             sc.Start();
