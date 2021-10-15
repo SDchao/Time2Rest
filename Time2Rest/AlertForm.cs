@@ -454,8 +454,8 @@ namespace Time2Rest
 
             sc.Stop();
 
-            this.TopMost = false;
-            this.TopMost = true;
+            // this.TopMost = false;
+            // this.TopMost = true;
             CountdownTimer.Enabled = false;
             logger.Info("Starting alert");
             status = FADE_IN;
