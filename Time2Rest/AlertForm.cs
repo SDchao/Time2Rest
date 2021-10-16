@@ -230,11 +230,6 @@ namespace Time2Rest
 
         private void OnUserOperation()
         {
-            if (status != HIDING)
-            {
-                this.TopMost = true; // 在StartRest()中不生效
-                this.Width = scWidth;
-            }
             if (status == HIDING)
             {
                 // User came back or just using the computer
@@ -291,7 +286,6 @@ namespace Time2Rest
                 UpdateTimer.Enabled = true;
 
                 manuallyRest = false;
-                this.TopMost = false;
 
                 StopRingtone();
                 sc.Start();
@@ -302,6 +296,8 @@ namespace Time2Rest
         {
             if (status == FADE_IN)
             {
+                this.TopMost = true;
+                this.Width = scWidth;
                 UpdateClock();
                 this.Opacity += maxOpacity / 3000 * UpdateTimer.Interval;
                 if (this.Opacity >= maxOpacity)
@@ -326,6 +322,7 @@ namespace Time2Rest
                     UpdateTimer.Enabled = false;
                     CountdownTimer.Enabled = true;
                     this.Width = 0;
+                    this.TopMost = false;
                 }
             }
         }
